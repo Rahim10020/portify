@@ -2,17 +2,36 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
     darkMode: "class",
-    content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+    content: [
+        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["var(--font-inter)"],
-                mono: ["var(--font-jetbrains-mono)"],
+            colors: {
+                background: "rgb(var(--background))",
+                foreground: "rgb(var(--foreground))",
+                muted: "rgb(var(--muted))",
+                border: "rgb(var(--border))",
+                primary: {
+                    DEFAULT: "rgb(var(--primary))",
+                    foreground: "rgb(var(--primary-foreground))",
+                },
+            },
+            boxShadow: {
+                sm: "var(--shadow-sm)",
+                DEFAULT: "var(--shadow-md)",
+                md: "var(--shadow-md)",
+                lg: "var(--shadow-lg)",
+                xl: "var(--shadow-xl)",
+                "2xl": "var(--shadow-2xl)",
             },
             animation: {
                 "fade-in": "fadeIn 0.5s ease-in-out",
                 "slide-up": "slideUp 0.5s ease-out",
                 "scale-in": "scaleIn 0.3s ease-out",
+                "slide-down": "slideDown 0.3s ease-out",
             },
             keyframes: {
                 fadeIn: {
@@ -27,9 +46,14 @@ const config: Config = {
                     "0%": { transform: "scale(0.95)", opacity: "0" },
                     "100%": { transform: "scale(1)", opacity: "1" },
                 },
+                slideDown: {
+                    "0%": { transform: "translateY(-10px)", opacity: "0" },
+                    "100%": { transform: "translateY(0)", opacity: "1" },
+                },
             },
         },
     },
     plugins: [],
 };
+
 export default config;
