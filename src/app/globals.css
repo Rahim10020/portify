@@ -1,22 +1,48 @@
 @import "tailwindcss";
 
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode (default) */
+  --background: 255 255 255;
+  /* Blanc pur */
+  --foreground: 10 10 10;
+  /* Noir quasi pur */
+  --muted: 245 245 245;
+  /* Gris très clair */
+  --border: 229 229 229;
+  /* Bordures subtiles */
+  --primary: 59 130 246;
+  /* Bleu (accent) */
+  --primary-foreground: 255 255 255;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.dark {
+  /* Dark mode */
+  --background: 10 10 10;
+  /* Noir quasi pur */
+  --foreground: 255 255 255;
+  /* Blanc */
+  --muted: 24 24 24;
+  /* Gris très foncé */
+  --border: 39 39 42;
+  /* Bordures subtiles */
+  --primary: 96 165 250;
+  /* Bleu plus clair */
+  --primary-foreground: 10 10 10;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Shadows pour dark mode (avec glow) */
+  --shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(255 255 255 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(255 255 255 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(255 255 255 / 0.25);
 }
 
 body {
