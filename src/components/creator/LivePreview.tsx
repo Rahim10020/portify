@@ -24,7 +24,7 @@ export const LivePreview = ({ templateId, data }: LivePreviewProps) => {
                         <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${currentPage === page
+                            className={`cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${currentPage === page
                                 ? 'bg-primary text-primary-foreground'
                                 : 'text-foreground/70 hover:text-foreground hover:bg-muted'
                                 }`}
@@ -36,7 +36,7 @@ export const LivePreview = ({ templateId, data }: LivePreviewProps) => {
 
                 <button
                     onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                    className="p-2 rounded-lg hover:bg-muted transition-colors"
+                    className="cursor-pointer p-2 rounded-lg hover:bg-muted transition-colors"
                 >
                     {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
                 </button>

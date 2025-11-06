@@ -86,7 +86,7 @@ export const Step5Skills = ({ data, onUpdate, onNext, onBack }: Step5SkillsProps
                                         )}
                                         <button
                                             onClick={() => handleDelete(skill.name)}
-                                            className="ml-1 hover:text-red-500"
+                                            className="cursor-pointer ml-1 hover:text-red-500"
                                         >
                                             <Trash2 size={12} />
                                         </button>

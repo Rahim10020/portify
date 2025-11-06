@@ -69,7 +69,7 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
                         <Card key={exp.id} className="relative">
                             <button
                                 onClick={() => handleDelete(exp.id)}
-                                className="absolute top-4 right-4 text-red-600 hover:text-red-700"
+                                className="cursor-pointer absolute top-4 right-4 text-red-600 hover:text-red-700"
                             >
                                 <Trash2 size={18} />
                             </button>

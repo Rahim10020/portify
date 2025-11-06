@@ -42,7 +42,7 @@ export const Footer = () => {
                                 href="https://github.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-foreground/70 hover:text-foreground transition-colors"
+                                className="cursor-pointer text-foreground/70 hover:text-foreground transition-colors"
                             >
                                 <Github size={20} />
                             </a>
@@ -50,7 +50,7 @@ export const Footer = () => {
                                 href="https://twitter.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-foreground/70 hover:text-foreground transition-colors"
+                                className="cursor-pointer text-foreground/70 hover:text-foreground transition-colors"
                             >
                                 <Twitter size={20} />
                             </a>
@@ -58,7 +58,7 @@ export const Footer = () => {
                                 href="https://linkedin.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-foreground/70 hover:text-foreground transition-colors"
+                                className="cursor-pointer text-foreground/70 hover:text-foreground transition-colors"
                             >
                                 <Linkedin size={20} />
                             </a>
@@ -74,7 +74,7 @@ export const Footer = () => {
                                     <li key={link.label}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                                            className="cursor-pointer text-sm text-foreground/70 hover:text-foreground transition-colors"
                                         >
                                             {link.label}
                                         </Link>

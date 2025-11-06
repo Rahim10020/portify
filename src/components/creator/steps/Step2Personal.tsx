@@ -93,7 +93,7 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
                             <button
                                 type="button"
                                 onClick={handleRemovePhoto}
-                                className="absolute top-2 right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700"
+                                className="cursor-pointer absolute top-2 right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700"
                             >
                                 <X size={16} />
                             </button>

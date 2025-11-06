@@ -62,7 +62,7 @@ export const Modal = ({ isOpen, onClose, title, children, size = 'md' }: ModalPr
                                     <h2 className="text-xl font-semibold text-foreground">{title}</h2>
                                     <button
                                         onClick={onClose}
-                                        className="text-foreground/50 hover:text-foreground transition-colors"
+                                        className="cursor-pointer text-foreground/50 hover:text-foreground transition-colors"
                                     >
                                         <X size={20} />
                                     </button>

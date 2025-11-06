@@ -37,7 +37,7 @@ export const Navbar = () => {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`text-sm font-medium transition-colors hover:text-primary ${pathname === link.href ? 'text-primary' : 'text-foreground/70'
+                                className={`cursor-pointer text-sm font-medium transition-colors hover:text-primary ${pathname === link.href ? 'text-primary' : 'text-foreground/70'
                                     }`}
                             >
                                 {link.label}
@@ -68,7 +68,7 @@ export const Navbar = () => {
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden p-2"
+                            className="cursor-pointer md:hidden p-2"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -90,7 +90,7 @@ export const Navbar = () => {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className="block px-4 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                                        className="cursor-pointer block px-4 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         {link.label}

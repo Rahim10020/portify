@@ -77,7 +77,7 @@ export const ToastContainer = () => {
 
                             <button
                                 onClick={() => removeToast(toast.id)}
-                                className="text-foreground/50 hover:text-foreground transition-colors flex-shrink-0"
+                                className="cursor-pointer text-foreground/50 hover:text-foreground transition-colors flex-shrink-0"
                             >
                                 <X size={16} />
                             </button>

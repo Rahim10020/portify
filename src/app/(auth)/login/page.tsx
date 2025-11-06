@@ -126,7 +126,7 @@ export default function LoginPage() {
 
                 <p className="mt-6 text-center text-sm text-foreground/70">
                     Don't have an account?{' '}
-                    <Link href={ROUTES.SIGNUP} className="text-primary hover:underline">
+                    <Link href={ROUTES.SIGNUP} className="cursor-pointer text-primary hover:underline">
                         Sign up
                     </Link>
                 </p>

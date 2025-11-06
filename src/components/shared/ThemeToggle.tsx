@@ -8,7 +8,7 @@ export const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="relative p-2 rounded-lg hover:bg-muted transition-colors duration-200"
+            className="cursor-pointer relative p-2 rounded-lg hover:bg-muted transition-colors duration-200"
             aria-label="Toggle theme"
         >
             <motion.div

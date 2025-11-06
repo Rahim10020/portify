@@ -92,7 +92,7 @@ export const Step7Theme = ({ data, onUpdate, onNext, onBack }: Step7ThemeProps) 
                         <button
                             key={color.name}
                             onClick={() => handleColorChange(color)}
-                            className={`p-4 rounded-lg border-2 transition-all ${theme.primaryColor === color.value
+                            className={`cursor-pointer p-4 rounded-lg border-2 transition-all ${theme.primaryColor === color.value
                                 ? 'border-foreground scale-105'
                                 : 'border-border hover:border-foreground/50'
                                 }`}
@@ -117,7 +117,7 @@ export const Step7Theme = ({ data, onUpdate, onNext, onBack }: Step7ThemeProps) 
                         <button
                             key={font.value}
                             onClick={() => setTheme({ ...theme, font: font.value })}
-                            className={`p-4 rounded-lg border-2 transition-all ${theme.font === font.value
+                            className={`cursor-pointer p-4 rounded-lg border-2 transition-all ${theme.font === font.value
                                 ? 'border-foreground'
                                 : 'border-border hover:border-foreground/50'
                                 }`}
@@ -145,7 +145,7 @@ export const Step7Theme = ({ data, onUpdate, onNext, onBack }: Step7ThemeProps) 
                     <h4 className="text-2xl font-bold mb-2">Your Name</h4>
                     <p className="mb-4">Your Professional Title</p>
                     <button
-                        className="px-4 py-2 rounded-lg text-white font-medium"
+                        className="cursor-pointer px-4 py-2 rounded-lg text-white font-medium"
                         style={{ backgroundColor: theme.primaryColor }}
                     >
                         Primary Button
@@ -165,7 +165,7 @@ export const Step7Theme = ({ data, onUpdate, onNext, onBack }: Step7ThemeProps) 
                         <h4 className="text-2xl font-bold mb-2">Your Name</h4>
                         <p className="mb-4">Your Professional Title</p>
                         <button
-                            className="px-4 py-2 rounded-lg text-white font-medium"
+                            className="cursor-pointer px-4 py-2 rounded-lg text-white font-medium"
                             style={{ backgroundColor: theme.darkMode.accent }}
                         >
                             Primary Button (Dark)
