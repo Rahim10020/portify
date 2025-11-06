@@ -8,9 +8,11 @@ import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { useToast } from '@/components/ui/Toast';
 import { projectSchema, ProjectInput } from '@/lib/utils/validation';
 import { Project } from '@/types';
-import { Plus, Trash2, FolderOpen, X } from 'lucide-react';
+import { uploadProjectImage } from '@/lib/cloudinary/upload';
+import { Plus, Trash2, FolderOpen, X, Upload, Image as ImageIcon } from 'lucide-react';
 
 interface Step4ProjectsProps {
     data: Project[];
@@ -20,10 +22,13 @@ interface Step4ProjectsProps {
 }
 
 export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsProps) => {
+    const toast = useToast();
     const [projects, setProjects] = useState<Project[]>(data);
     const [isAdding, setIsAdding] = useState(false);
     const [techInput, setTechInput] = useState('');
     const [techs, setTechs] = useState<string[]>([]);
+    const [projectImages, setProjectImages] = useState<string[]>([]);
+    const [uploading, setUploading] = useState(false);
 
     const {
         register,
@@ -50,11 +55,41 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
         setValue('techs', updatedTechs);
     };
 
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error('Image too large. Max 5MB');
+            return;
+        }
+
+        if (!file.type.startsWith('image/')) {
+            toast.error('Please upload an image file');
+            return;
+        }
+
+        try {
+            setUploading(true);
+            const url = await uploadProjectImage(file);
+            setProjectImages([...projectImages, url]);
+            toast.success('Image uploaded');
+        } catch (error) {
+            toast.error('Failed to upload image');
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleRemoveImage = (url: string) => {
+        setProjectImages(projectImages.filter((img) => img !== url));
+    };
+
     const onSubmit = (formData: ProjectInput) => {
         const newProject: Project = {
             id: Math.random().toString(36).substr(2, 9),
             ...formData,
-            images: [],
+            images: projectImages,
             featured: false,
         };
 
@@ -63,6 +98,7 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
         onUpdate(updatedProjects);
         reset();
         setTechs([]);
+        setProjectImages([]);
         setIsAdding(false);
     };
 
@@ -201,6 +237,52 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
                             {errors.techs && (
                                 <p className="mt-1.5 text-sm text-red-600">{errors.techs.message}</p>
                             )}
+                        </div>
+
+                        {/* Project Images */}
+                        <div>
+                            <label className="block text-sm font-medium text-foreground mb-2">
+                                Project Images (Optional)
+                            </label>
+
+                            {/* Image Preview */}
+                            {projectImages.length > 0 && (
+                                <div className="grid grid-cols-3 gap-3 mb-3">
+                                    {projectImages.map((img, index) => (
+                                        <div key={index} className="relative aspect-video rounded-lg overflow-hidden border-2 border-border">
+                                            <img src={img} alt={`Project ${index + 1}`} className="w-full h-full object-cover" />
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveImage(img)}
+                                                className="absolute top-1 right-1 p-1 bg-red-600 text-white rounded-full hover:bg-red-700"
+                                            >
+                                                <X size={14} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Upload Button */}
+                            <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors">
+                                <div className="flex flex-col items-center justify-center">
+                                    {uploading ? (
+                                        <p className="text-sm text-foreground/70">Uploading...</p>
+                                    ) : (
+                                        <>
+                                            <ImageIcon className="w-6 h-6 text-foreground/50 mb-1" />
+                                            <p className="text-sm text-foreground/70">Click to upload image</p>
+                                        </>
+                                    )}
+                                </div>
+                                <input
+                                    type="file"
+                                    className="hidden"
+                                    accept="image/*"
+                                    onChange={handleImageUpload}
+                                    disabled={uploading}
+                                />
+                            </label>
                         </div>
 
                         <div className="flex gap-3">
