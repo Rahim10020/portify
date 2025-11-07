@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
 import { ROUTES } from '@/lib/constants/routes';
 import { Users, Settings, Mail, BarChart3 } from 'lucide-react';
 
