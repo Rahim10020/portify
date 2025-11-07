@@ -28,7 +28,7 @@ export const signUpWithEmail = async (
     const newUser: Omit<User, 'id'> = {
         email: firebaseUser.email!,
         displayName,
-        photoURL: firebaseUser.photoURL || undefined,
+        ...(firebaseUser.photoURL && { photoURL: firebaseUser.photoURL }),
         plan: 'free',
         grandfathered: false,
         isAdmin,
@@ -65,7 +65,7 @@ export const signInWithGoogle = async (): Promise<User> => {
         const newUser: Omit<User, 'id'> = {
             email: firebaseUser.email!,
             displayName: firebaseUser.displayName || 'User',
-            photoURL: firebaseUser.photoURL || undefined,
+            ...(firebaseUser.photoURL && { photoURL: firebaseUser.photoURL }),
             plan: 'free',
             grandfathered: false,
             isAdmin,
