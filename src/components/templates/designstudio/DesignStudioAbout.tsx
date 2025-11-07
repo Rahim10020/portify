@@ -10,7 +10,7 @@ interface DesignStudioAboutProps {
 }
 
 export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
-    const { personal, experience, skills } = data;
+    const { personal, experience, skills, projects } = data;
     const themeColors = data.theme.lightMode;
     const containerRef = useRef<HTMLDivElement>(null);
 
