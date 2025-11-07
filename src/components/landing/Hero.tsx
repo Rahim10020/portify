@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { ROUTES } from '@/lib/constants/routes';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export const Hero = () => {
+    const { isAuthenticated } = useAuth();
     return (
         <section className="relative overflow-hidden py-20 md:py-32">
             {/* Background gradient */}
@@ -57,20 +59,41 @@ export const Hero = () => {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
-                        <Link href={ROUTES.SIGNUP}>
-                            <Button size="lg" className="group">
-                                Get Started Free
-                                <ArrowRight
-                                    size={20}
-                                    className="ml-2 group-hover:translate-x-1 transition-transform"
-                                />
-                            </Button>
-                        </Link>
-                        <Link href={ROUTES.TEMPLATES}>
-                            <Button size="lg" variant="secondary">
-                                Browse Templates
-                            </Button>
-                        </Link>
+                        {isAuthenticated ? (
+                            <>
+                                <Link href={ROUTES.DASHBOARD}>
+                                    <Button size="lg" className="group">
+                                        Go to Dashboard
+                                        <ArrowRight
+                                            size={20}
+                                            className="ml-2 group-hover:translate-x-1 transition-transform"
+                                        />
+                                    </Button>
+                                </Link>
+                                <Link href={ROUTES.CREATE}>
+                                    <Button size="lg" variant="secondary">
+                                        Create Portfolio
+                                    </Button>
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link href={ROUTES.SIGNUP}>
+                                    <Button size="lg" className="group">
+                                        Get Started Free
+                                        <ArrowRight
+                                            size={20}
+                                            className="ml-2 group-hover:translate-x-1 transition-transform"
+                                        />
+                                    </Button>
+                                </Link>
+                                <Link href={ROUTES.TEMPLATES}>
+                                    <Button size="lg" variant="secondary">
+                                        Browse Templates
+                                    </Button>
+                                </Link>
+                            </>
+                        )}
                     </motion.div>
 
                     {/* Social Proof */}
