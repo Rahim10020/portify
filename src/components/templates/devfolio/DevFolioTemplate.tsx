@@ -26,7 +26,7 @@ export const DevFolioTemplate = ({ portfolio, page }: DevFolioTemplateProps) => 
                 return <DevFolioAbout data={portfolio.data} />;
             case page === 'projects':
                 return <DevFolioProjects data={portfolio.data} />;
-            case isProjectDetail && projectSlug:
+            case isProjectDetail && !!projectSlug:
                 return <DevFolioProjectDetail data={portfolio.data} projectSlug={projectSlug} />;
             case page === 'contact':
                 return <DevFolioContact data={portfolio.data} />;
