@@ -5,7 +5,7 @@ export const TEMPLATES: TemplateConfig[] = [
         id: 'devfolio',
         name: 'DevFolio',
         slug: 'devfolio',
-        description: 'Perfect for developers with GitHub integration and tech-focused design',
+        description: 'Terminal-inspired portfolio for developers with clean code aesthetics',
         previewImage: '/templates/devfolio-preview.png',
         category: 'developer',
         tier: 'free',
@@ -19,7 +19,7 @@ export const TEMPLATES: TemplateConfig[] = [
         id: 'designstudio',
         name: 'Design Studio',
         slug: 'designstudio',
-        description: 'Showcase your design work with beautiful masonry layouts',
+        description: 'Bold and creative portfolio with rich animations for designers',
         previewImage: '/templates/designstudio-preview.png',
         category: 'designer',
         tier: 'free',
@@ -33,7 +33,7 @@ export const TEMPLATES: TemplateConfig[] = [
         id: 'minimal',
         name: 'Minimal',
         slug: 'minimal',
-        description: 'Clean and simple portfolio for any profession',
+        description: 'Clean Swiss-inspired design for professionals who value simplicity',
         previewImage: '/templates/minimal-preview.png',
         category: 'generic',
         tier: 'free',
@@ -51,4 +51,8 @@ export const getTemplateById = (id: string): TemplateConfig | undefined => {
 
 export const getTemplateBySlug = (slug: string): TemplateConfig | undefined => {
     return TEMPLATES.find((template) => template.slug === slug);
+};
+
+export const getTemplatesByCategory = (category: string): TemplateConfig[] => {
+    return TEMPLATES.filter((template) => template.category === category);
 };
