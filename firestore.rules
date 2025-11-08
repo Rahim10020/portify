@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Portfolios collection
+    match /portfolios/{portfolioId} {
+      allow read: if resource.data.isPublished == true || isOwner(resource.data.userId) || isAdmin();
+      allow create: if isAuthenticated() && request.auth.uid == request.resource.data.userId;
+      allow update: if isOwner(resource.data.userId) || isAdmin();
+      allow delete: if isOwner(resource.data.userId) || isAdmin();
+    }
+    
+    // Newsletter collection
+    match /newsletter/{subscriberId} {
+      allow read: if isAdmin();
+      allow create: if true; // Public can subscribe
+      allow update, delete: if isAdmin();
+    }
+    
+    // App settings
+    match /appSettings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
