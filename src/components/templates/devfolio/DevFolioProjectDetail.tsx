@@ -8,9 +8,10 @@ import ReactMarkdown from 'react-markdown';
 interface DevFolioProjectDetailProps {
     data: PortfolioData;
     projectSlug: string;
+    slug: string;
 }
 
-export const DevFolioProjectDetail = ({ data, projectSlug }: DevFolioProjectDetailProps) => {
+export const DevFolioProjectDetail = ({ data, projectSlug, slug }: DevFolioProjectDetailProps) => {
     const { projects, personal } = data;
     const themeColors = data.theme.darkMode;
 
@@ -23,7 +24,7 @@ export const DevFolioProjectDetail = ({ data, projectSlug }: DevFolioProjectDeta
                     <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
                     <p className="opacity-70 mb-6">The project you're looking for doesn't exist.</p>
                     <a
-                        href={`/u/${personal.name.toLowerCase().replace(' ', '-')}/projects`}
+                        href={`/u/${slug}/projects`}
                         className="inline-flex items-center gap-2 font-medium"
                         style={{ color: themeColors.accent }}
                     >
@@ -44,7 +45,7 @@ export const DevFolioProjectDetail = ({ data, projectSlug }: DevFolioProjectDeta
                 className="max-w-5xl mb-8"
             >
                 <a
-                    href={`/u/${personal.name.toLowerCase().replace(' ', '-')}/projects`}
+                    href={`/u/${slug}/projects`}
                     className="inline-flex items-center gap-2 font-medium opacity-60 hover:opacity-100 transition-opacity"
                 >
                     <ArrowLeft size={18} />
@@ -252,7 +253,7 @@ export const DevFolioProjectDetail = ({ data, projectSlug }: DevFolioProjectDeta
                         .map((otherProject) => (
                             <a
                                 key={otherProject.id}
-                                href={`/u/${personal.name.toLowerCase().replace(' ', '-')}/projects/${otherProject.id}`}
+                                href={`/u/${slug}/projects/${otherProject.id}`}
                                 className="border border-current/10 rounded-lg p-6 hover:border-current/30 transition-all group"
                             >
                                 <h4 className="font-bold mb-2 group-hover:text-accent transition-colors">

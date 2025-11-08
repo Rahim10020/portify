@@ -21,17 +21,17 @@ export const DevFolioTemplate = ({ portfolio, page }: DevFolioTemplateProps) => 
 
         switch (true) {
             case page === 'home' || page === '':
-                return <DevFolioHome data={portfolio.data} />;
+                return <DevFolioHome data={portfolio.data} slug={portfolio.slug} />;
             case page === 'about':
                 return <DevFolioAbout data={portfolio.data} />;
             case page === 'projects':
-                return <DevFolioProjects data={portfolio.data} />;
+                return <DevFolioProjects data={portfolio.data} slug={portfolio.slug} />;
             case isProjectDetail && !!projectSlug:
-                return <DevFolioProjectDetail data={portfolio.data} projectSlug={projectSlug} />;
+                return <DevFolioProjectDetail data={portfolio.data} projectSlug={projectSlug} slug={portfolio.slug} />;
             case page === 'contact':
                 return <DevFolioContact data={portfolio.data} />;
             default:
-                return <DevFolioHome data={portfolio.data} />;
+                return <DevFolioHome data={portfolio.data} slug={portfolio.slug} />;
         }
     };
 

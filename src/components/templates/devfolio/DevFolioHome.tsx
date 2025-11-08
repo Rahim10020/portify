@@ -3,13 +3,13 @@
 import { PortfolioData } from '@/types';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code2, ExternalLink, Github } from 'lucide-react';
-import Link from 'next/link';
 
 interface DevFolioHomeProps {
     data: PortfolioData;
+    slug: string;
 }
 
-export const DevFolioHome = ({ data }: DevFolioHomeProps) => {
+export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
     const { personal, projects, skills } = data;
     const themeColors = data.theme.darkMode;
     const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
@@ -185,7 +185,7 @@ export const DevFolioHome = ({ data }: DevFolioHomeProps) => {
                                         {/* View Details Link */}
                                         {project.fullDescription && (
                                             <a
-                                                href={`/u/${personal.name.toLowerCase()}/projects/${project.id}`}
+                                                href={`/u/${slug}/projects/${project.id}`}
                                                 className="inline-flex items-center gap-2 font-medium hover:gap-3 transition-all"
                                                 style={{ color: themeColors.accent }}
                                             >
@@ -214,7 +214,7 @@ export const DevFolioHome = ({ data }: DevFolioHomeProps) => {
                     {projects.length > featuredProjects.length && (
                         <div className="text-center mt-12">
                             <a
-                                href={`/u/${personal.name.toLowerCase()}/projects`}
+                                href={`/u/${slug}/projects`}
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border font-medium hover:bg-current/5 transition-all"
                                 style={{ borderColor: themeColors.accent, color: themeColors.accent }}
                             >

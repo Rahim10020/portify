@@ -7,9 +7,10 @@ import { Search, Github, ExternalLink, ArrowRight } from 'lucide-react';
 
 interface DevFolioProjectsProps {
     data: PortfolioData;
+    slug: string;
 }
 
-export const DevFolioProjects = ({ data }: DevFolioProjectsProps) => {
+export const DevFolioProjects = ({ data, slug }: DevFolioProjectsProps) => {
     const { projects, personal } = data;
     const themeColors = data.theme.darkMode;
 
@@ -197,7 +198,7 @@ export const DevFolioProjects = ({ data }: DevFolioProjectsProps) => {
                                         {/* View Details */}
                                         {project.fullDescription && (
                                             <a
-                                                href={`/u/${personal.name.toLowerCase().replace(' ', '-')}/projects/${project.id}`}
+                                                href={`/u/${slug}/projects/${project.id}`}
                                                 className="inline-flex items-center gap-2 font-medium text-sm group/link"
                                                 style={{ color: themeColors.accent }}
                                             >
