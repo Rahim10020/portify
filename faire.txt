@@ -1,0 +1,3 @@
+- tester toutes les fonctionnalites
+- voir avec une session de claude comment ameliorer le code
+- voir si on peut ameliorer le ui
