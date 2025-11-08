@@ -1,63 +1,110 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
-import { Moon, Sun } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Monitor, Smartphone, Maximize2 } from 'lucide-react';
+import { TemplateRenderer } from '@/components/templates/TemplateRenderer';
+import { Portfolio } from '@/types';
 
 interface LivePreviewProps {
-    templateId: string;
-    data: any;
+    portfolio: Portfolio;
+    currentPage?: string;
 }
 
-export const LivePreview = ({ templateId, data }: LivePreviewProps) => {
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
-    const [currentPage, setCurrentPage] = useState('home');
-
-    const pages = ['home', 'about', 'projects', 'contact'];
+export const LivePreview = ({ portfolio, currentPage = 'home' }: LivePreviewProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
     return (
-        <div className="h-full flex flex-col bg-muted/50 rounded-xl border border-border overflow-hidden">
-            {/* Preview Controls */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-background">
-                <div className="flex items-center gap-2">
-                    {pages.map((page) => (
-                        <button
-                            key={page}
-                            onClick={() => setCurrentPage(page)}
-                            className={`cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${currentPage === page
-                                ? 'bg-primary text-primary-foreground'
-                                : 'text-foreground/70 hover:text-foreground hover:bg-muted'
-                                }`}
+        <>
+            {/* Trigger Button */}
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(true)}
+                className="fixed bottom-8 right-8 z-40 px-6 py-3 bg-primary text-white rounded-full shadow-xl flex items-center gap-2 font-medium hover:shadow-2xl transition-shadow"
+            >
+                <Monitor size={20} />
+                Live Preview
+            </motion.button>
+
+            {/* Preview Modal */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: 'spring', damping: 25 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="absolute inset-4 bg-background rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                         >
-                            {page.charAt(0).toUpperCase() + page.slice(1)}
-                        </button>
-                    ))}
-                </div>
+                            {/* Header */}
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-card">
+                                <div className="flex items-center gap-4">
+                                    <h3 className="text-lg font-semibold text-foreground">Live Preview</h3>
 
-                <button
-                    onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                    className="cursor-pointer p-2 rounded-lg hover:bg-muted transition-colors"
-                >
-                    {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
-                </button>
-            </div>
+                                    {/* Device Toggle */}
+                                    <div className="flex items-center gap-2 bg-muted rounded-lg p-1">
+                                        <button
+                                            onClick={() => setDevice('desktop')}
+                                            className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-colors ${device === 'desktop'
+                                                ? 'bg-background text-foreground shadow-sm'
+                                                : 'text-foreground/60 hover:text-foreground'
+                                                }`}
+                                        >
+                                            <Monitor size={16} />
+                                            Desktop
+                                        </button>
+                                        <button
+                                            onClick={() => setDevice('mobile')}
+                                            className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-colors ${device === 'mobile'
+                                                ? 'bg-background text-foreground shadow-sm'
+                                                : 'text-foreground/60 hover:text-foreground'
+                                                }`}
+                                        >
+                                            <Smartphone size={16} />
+                                            Mobile
+                                        </button>
+                                    </div>
+                                </div>
 
-            {/* Preview Area */}
-            <div className="flex-1 overflow-auto p-4">
-                <div className="bg-background rounded-lg border border-border min-h-full flex items-center justify-center">
-                    <div className="text-center p-8">
-                        <div className="text-4xl font-bold text-foreground/20 mb-4">
-                            {templateId ? `${templateId} Template` : 'Select Template'}
-                        </div>
-                        <div className="text-foreground/40 mb-2">
-                            Live Preview - {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)} Page
-                        </div>
-                        <div className="text-sm text-foreground/30">
-                            Theme: {theme === 'light' ? 'Light' : 'Dark'}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-2 hover:bg-muted rounded-lg transition-colors"
+                                >
+                                    <X size={20} className="text-foreground/70" />
+                                </motion.button>
+                            </div>
+
+                            {/* Preview Frame */}
+                            <div className="flex-1 overflow-hidden bg-muted/30 flex items-center justify-center p-8">
+                                <motion.div
+                                    key={device}
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    className={`bg-background rounded-lg shadow-2xl overflow-hidden ${device === 'desktop' ? 'w-full h-full' : 'w-96 h-full max-h-[844px]'
+                                        }`}
+                                >
+                                    <div className="w-full h-full overflow-auto">
+                                        <TemplateRenderer portfolio={portfolio} page={currentPage} />
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 };
