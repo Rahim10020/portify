@@ -11,7 +11,7 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import { usePortfolio } from '@/lib/hooks/usePortfolio';
 import { useFeatures } from '@/lib/hooks/useFeatures';
 import { ROUTES } from '@/lib/constants/routes';
-import { Plus, Eye, Edit, Trash2, ExternalLink } from 'lucide-react';
+import { Plus, Edit, Trash2, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/components/ui/Toast';
 import { Modal } from '@/components/ui/Modal';
@@ -48,7 +48,7 @@ function DashboardContent() {
     const canCreateMore = portfolios.length < features.portfolios;
 
     return (
-        <div className="py-20">
+        <div className="py-8">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
@@ -78,7 +78,7 @@ function DashboardContent() {
                     >
                         {canCreateMore ? (
                             <Link href={ROUTES.CREATE}>
-                                <Button size="lg">
+                                <Button size="md">
                                     <Plus size={20} className="mr-2" />
                                     Create New Portfolio
                                 </Button>
@@ -153,7 +153,7 @@ function DashboardContent() {
                                 Create your first portfolio and start showcasing your work to the world
                             </p>
                             <Link href={ROUTES.CREATE}>
-                                <Button size="lg">
+                                <Button size="md">
                                     <Plus size={20} className="mr-2" />
                                     Create Your First Portfolio
                                 </Button>
