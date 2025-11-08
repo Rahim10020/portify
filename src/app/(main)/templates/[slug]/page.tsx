@@ -6,8 +6,9 @@ import { getTemplateBySlug } from '@/lib/constants/templates';
 import { ROUTES } from '@/lib/constants/routes';
 import { ArrowLeft } from 'lucide-react';
 
-export default function TemplatePreviewPage({ params }: { params: { slug: string } }) {
-    const template = getTemplateBySlug(params.slug);
+export default async function TemplatePreviewPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const template = getTemplateBySlug(slug);
 
     if (!template) {
         notFound();

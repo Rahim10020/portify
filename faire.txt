@@ -1,5 +1,0 @@
-npm install -g firebase-tools
-
-- erreur a regler 
-    Function setDoc() called with invalid data. 
-    Unsupported field value: undefined (found in field photoURL in document users/uMkKWgJE0Xaq5zVoH6wQ4V3ACQf1)
