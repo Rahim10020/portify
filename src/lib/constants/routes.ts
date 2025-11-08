@@ -8,7 +8,7 @@ export const ROUTES = {
 
     DASHBOARD: '/dashboard',
     CREATE: '/create',
-    EDIT: (id: string) => `/edit/${id}`,
+    EDIT: (id: string) => `/dashboard/edit/${id}`,
     SETTINGS: '/settings',
     PRICING: '/pricing',
 
