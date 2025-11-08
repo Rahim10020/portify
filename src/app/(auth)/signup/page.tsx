@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Card } from '@/components/ui/Card';
 import { useToast } from '@/components/ui/Toast';
 import { signUpWithEmail, signInWithGoogle } from '@/lib/firebase/auth';
 import { signUpSchema, SignUpInput } from '@/lib/utils/validation';
@@ -60,7 +59,7 @@ export default function SignUpPage() {
             animate={{ opacity: 1, y: 0 }}
             className="w-full max-w-md"
         >
-            <Card>
+            <div>
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-foreground mb-2">Create an account</h1>
                     <p className="text-foreground/70">Start building your portfolio today</p>
@@ -138,7 +137,7 @@ export default function SignUpPage() {
                         Sign in
                     </Link>
                 </p>
-            </Card>
+            </div>
         </motion.div>
     );
 }

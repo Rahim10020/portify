@@ -14,3 +14,4 @@
 - voir si je peux coder le texte "Google" dans or continue with google
      au niveau des pages d'authentifications comme le texte de google avec les 
      lettres colores (chaque lettre avec sa couleur)
+- voir si on peut gerer les forgot password
