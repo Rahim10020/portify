@@ -20,7 +20,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
                     disabled={disabled}
                     onClick={() => onChange(!checked)}
                     className={cn(
-                        'relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200',
+                        'relative inline-flex cursor-pointer h-6 w-11 items-center rounded-full transition-colors duration-200',
                         'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
                         checked ? 'bg-primary' : 'bg-muted',
                         disabled && 'opacity-50 cursor-not-allowed'

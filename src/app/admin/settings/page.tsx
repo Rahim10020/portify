@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Switch } from '@/components/ui/Switch';
-import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 import { getAppSettings, updateAppSettings } from '@/lib/firebase/firestore';
 import { AppSettings } from '@/types';
@@ -154,7 +153,7 @@ export default function AdminSettingsPage() {
 
                 {/* Save Button */}
                 <div className="flex justify-end">
-                    <Button onClick={handleSave} isLoading={saving} size="lg">
+                    <Button onClick={handleSave} isLoading={saving} size="md">
                         Save Settings
                     </Button>
                 </div>

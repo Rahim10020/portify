@@ -1,3 +1,6 @@
 - tester toutes les fonctionnalites
-- voir avec une session de claude comment ameliorer le code
 - voir si on peut ameliorer le ui
+- il a des fichiers (des composants) (imageoptimiser ,logger...) que j'ai cree mais qui ne sont pas encore utilise dans 
+    mon code je veux les use.
+-  recuperer bien les donnees et les afficher dans la page d'accueil d'admin(users, portolios, etc...).
+- verifier que chaque modifications faite dans la page de settings d'admin affecte bien le site comme il faut.
