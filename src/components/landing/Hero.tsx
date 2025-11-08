@@ -10,7 +10,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 export const Hero = () => {
     const { isAuthenticated } = useAuth();
     return (
-        <section className="relative overflow-hidden py-20 md:py-32">
+        <section className="relative overflow-hidden py-12 md:py-16">
             {/* Background gradient */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />

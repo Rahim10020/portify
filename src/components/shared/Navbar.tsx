@@ -87,7 +87,7 @@ export const Navbar = () => {
                             <div className="relative" ref={userMenuRef}>
                                 <button
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                                    className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+                                    className="flex items-center cursor-pointer gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                                         {user?.photoURL ? (
@@ -121,14 +121,14 @@ export const Navbar = () => {
                                             </div>
 
                                             <Link href={ROUTES.DASHBOARD} onClick={() => setUserMenuOpen(false)}>
-                                                <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                                                <button className="w-full cursor-pointer px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
                                                     <LayoutDashboard size={16} />
                                                     Dashboard
                                                 </button>
                                             </Link>
 
                                             <Link href={ROUTES.SETTINGS} onClick={() => setUserMenuOpen(false)}>
-                                                <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                                                <button className="w-full cursor-pointer px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
                                                     <Settings size={16} />
                                                     Settings
                                                 </button>
@@ -136,7 +136,7 @@ export const Navbar = () => {
 
                                             {user?.isAdmin && (
                                                 <Link href={ROUTES.ADMIN} onClick={() => setUserMenuOpen(false)}>
-                                                    <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                                                    <button className="w-full cursor-pointer px-4 py-2 text-left text-sm text-foreground hover:bg-muted transition-colors flex items-center gap-2">
                                                         <User size={16} />
                                                         Admin Panel
                                                     </button>
@@ -147,7 +147,7 @@ export const Navbar = () => {
 
                                             <button
                                                 onClick={handleSignOut}
-                                                className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors flex items-center gap-2"
+                                                className="w-full cursor-pointer px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors flex items-center gap-2"
                                             >
                                                 <LogOut size={16} />
                                                 Sign Out
