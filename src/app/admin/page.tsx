@@ -38,11 +38,14 @@ export default function AdminPage() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <Link href={ROUTES.ADMIN_SETTINGS}>
-                        <Card hover className="cursor-pointer h-full">
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <Settings className="text-primary" size={24} />
+                        <Card hover className="cursor-pointer">
+                            <div className='flex items-center gap-4'>
+                                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                                    <Settings className="text-primary" size={24} />
+                                </div>
+                                <h3 className="text-xl font-semibold text-foreground mb-2">Settings</h3>
                             </div>
-                            <h3 className="text-xl font-semibold text-foreground mb-2">Settings</h3>
+
                             <p className="text-foreground/70 text-sm">
                                 Manage pricing, limits, and feature flags
                             </p>
@@ -50,11 +53,14 @@ export default function AdminPage() {
                     </Link>
 
                     <Link href={ROUTES.ADMIN_USERS}>
-                        <Card hover className="cursor-pointer h-full">
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <Users className="text-primary" size={24} />
+                        <Card hover className="cursor-pointer">
+                            <div className='flex items-center gap-4'>
+                                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                                    <Users className="text-primary" size={24} />
+                                </div>
+                                <h3 className="text-xl font-semibold text-foreground mb-2">Users</h3>
                             </div>
-                            <h3 className="text-xl font-semibold text-foreground mb-2">Users</h3>
+
                             <p className="text-foreground/70 text-sm">
                                 View and manage user accounts
                             </p>
@@ -62,11 +68,13 @@ export default function AdminPage() {
                     </Link>
 
                     <Link href={ROUTES.ADMIN_NEWSLETTER}>
-                        <Card hover className="cursor-pointer h-full">
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <Mail className="text-primary" size={24} />
+                        <Card hover className="cursor-pointer">
+                            <div className='flex items-center gap-4'>
+                                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                                    <Mail className="text-primary" size={24} />
+                                </div>
+                                <h3 className="text-xl font-semibold text-foreground mb-2">Newsletter</h3>
                             </div>
-                            <h3 className="text-xl font-semibold text-foreground mb-2">Newsletter</h3>
                             <p className="text-foreground/70 text-sm">
                                 Export newsletter subscribers
                             </p>
