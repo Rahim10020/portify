@@ -81,90 +81,92 @@ export default function AdminNewsletterPage() {
 
     return (
         <div className="container mx-auto px-4 py-12">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-2">Newsletter Subscribers</h2>
-                <p className="text-foreground/70">Manage and export your newsletter subscribers</p>
-            </div>
-
-            {/* Stats */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <Card>
-                    <div className="text-sm text-foreground/70 mb-1">Total Subscribers</div>
-                    <div className="text-3xl font-bold text-foreground">{subscribers.length}</div>
-                </Card>
-                <Card>
-                    <div className="text-sm text-foreground/70 mb-1">This Month</div>
-                    <div className="text-3xl font-bold text-foreground">
-                        {
-                            subscribers.filter((s) => {
-                                const date = new Date(s.subscribedAt.toDate());
-                                const now = new Date();
-                                return (
-                                    date.getMonth() === now.getMonth() &&
-                                    date.getFullYear() === now.getFullYear()
-                                );
-                            }).length
-                        }
-                    </div>
-                </Card>
-                <Card>
-                    <div className="text-sm text-foreground/70 mb-1">This Week</div>
-                    <div className="text-3xl font-bold text-foreground">
-                        {
-                            subscribers.filter((s) => {
-                                const date = new Date(s.subscribedAt.toDate());
-                                const now = new Date();
-                                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-                                return date >= weekAgo;
-                            }).length
-                        }
-                    </div>
-                </Card>
-            </div>
-
-            {/* Export Buttons */}
-            <div className="flex gap-4 mb-6">
-                <Button onClick={handleExport}>
-                    <Download size={16} className="mr-2" />
-                    Export as TXT
-                </Button>
-                <Button onClick={handleExportCSV} variant="secondary">
-                    <Download size={16} className="mr-2" />
-                    Export as CSV
-                </Button>
-            </div>
-
-            {/* Subscribers List */}
-            <Card>
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead>
-                            <tr className="border-b border-border">
-                                <th className="text-left py-3 px-4 text-sm font-semibold text-foreground">Email</th>
-                                <th className="text-left py-3 px-4 text-sm font-semibold text-foreground">
-                                    Subscribed At
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {subscribers.map((subscriber) => (
-                                <tr key={subscriber.id} className="border-b border-border hover:bg-muted/30">
-                                    <td className="py-3 px-4 text-foreground">{subscriber.email}</td>
-                                    <td className="py-3 px-4 text-foreground/70">
-                                        {new Date(subscriber.subscribedAt.toDate()).toLocaleString()}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    {subscribers.length === 0 && (
-                        <div className="text-center py-12 text-foreground/70">
-                            No subscribers yet
-                        </div>
-                    )}
+            <div className='max-w-3xl mx-auto space-y-6'>
+                <div className="mb-8">
+                    <h2 className="text-3xl font-bold text-foreground mb-2">Newsletter Subscribers</h2>
+                    <p className="text-foreground/70">Manage and export your newsletter subscribers</p>
                 </div>
-            </Card>
+
+                {/* Stats */}
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    <Card>
+                        <div className="text-sm text-foreground/70 mb-1">Total Subscribers</div>
+                        <div className="text-3xl font-bold text-foreground">{subscribers.length}</div>
+                    </Card>
+                    <Card>
+                        <div className="text-sm text-foreground/70 mb-1">This Month</div>
+                        <div className="text-3xl font-bold text-foreground">
+                            {
+                                subscribers.filter((s) => {
+                                    const date = new Date(s.subscribedAt.toDate());
+                                    const now = new Date();
+                                    return (
+                                        date.getMonth() === now.getMonth() &&
+                                        date.getFullYear() === now.getFullYear()
+                                    );
+                                }).length
+                            }
+                        </div>
+                    </Card>
+                    <Card>
+                        <div className="text-sm text-foreground/70 mb-1">This Week</div>
+                        <div className="text-3xl font-bold text-foreground">
+                            {
+                                subscribers.filter((s) => {
+                                    const date = new Date(s.subscribedAt.toDate());
+                                    const now = new Date();
+                                    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                                    return date >= weekAgo;
+                                }).length
+                            }
+                        </div>
+                    </Card>
+                </div>
+
+                {/* Export Buttons */}
+                <div className="flex gap-4 mb-6">
+                    <Button onClick={handleExport}>
+                        <Download size={16} className="mr-2" />
+                        Export as TXT
+                    </Button>
+                    <Button onClick={handleExportCSV} variant="secondary">
+                        <Download size={16} className="mr-2" />
+                        Export as CSV
+                    </Button>
+                </div>
+
+                {/* Subscribers List */}
+                <Card>
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="border-b border-border">
+                                    <th className="text-left py-3 px-4 text-sm font-semibold text-foreground">Email</th>
+                                    <th className="text-left py-3 px-4 text-sm font-semibold text-foreground">
+                                        Subscribed At
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {subscribers.map((subscriber) => (
+                                    <tr key={subscriber.id} className="border-b border-border hover:bg-muted/30">
+                                        <td className="py-3 px-4 text-foreground">{subscriber.email}</td>
+                                        <td className="py-3 px-4 text-foreground/70">
+                                            {new Date(subscriber.subscribedAt.toDate()).toLocaleString()}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                        {subscribers.length === 0 && (
+                            <div className="text-center py-12 text-foreground/70">
+                                No subscribers yet
+                            </div>
+                        )}
+                    </div>
+                </Card>
+            </div>
         </div>
     );
 }
