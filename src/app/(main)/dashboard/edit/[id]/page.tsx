@@ -16,6 +16,7 @@ import { Step6Contact } from '@/components/creator/steps/Step6Contact';
 import { Step7Theme } from '@/components/creator/steps/Step7Theme';
 import { Step8Publish } from '@/components/creator/steps/Step8Publish';
 import { ProgressBar } from '@/components/creator/ProgressBar';
+import { LivePreview } from '@/components/creator/LivePreview';
 import { Loader2 } from 'lucide-react';
 
 export default function EditPortfolioPage() {
@@ -235,18 +236,43 @@ export default function EditPortfolioPage() {
             <ProgressBar currentStep={currentStep} totalSteps={8} />
 
             {/* Main Content */}
-            <div className="container mx-auto px-4 py-12 max-w-4xl">
-                {/* Header */}
-                <div className="mb-12">
-                    <h1 className="text-3xl font-bold text-foreground mb-2">Edit Portfolio</h1>
-                    <p className="text-foreground/70">
-                        Make changes to your portfolio. Step {currentStep} of 8
-                    </p>
-                </div>
+            <div className="container mx-auto px-4 py-12 max-w-7xl">
+                <div className="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        {/* Header */}
+                        <div className="mb-12">
+                            <h1 className="text-3xl font-bold text-foreground mb-2">Edit Portfolio</h1>
+                            <p className="text-foreground/70">
+                                Make changes to your portfolio. Step {currentStep} of 8
+                            </p>
+                        </div>
 
-                {/* Step Content */}
-                <div className="bg-card rounded-lg border border-border p-8">
-                    {renderStep()}
+                        {/* Step Content */}
+                        <div className="bg-card rounded-lg border border-border p-8">
+                            {renderStep()}
+                        </div>
+                    </div>
+
+                    {/* Preview Section */}
+                    <div className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
+                        <LivePreview
+                            portfolio={{
+                                ...portfolio,
+                                templateId,
+                                slug,
+                                isPublished,
+                                data: {
+                                    personal: personalData,
+                                    experience: experienceData,
+                                    projects: projectsData,
+                                    skills: skillsData,
+                                    socials: socialsData,
+                                    theme: themeData,
+                                },
+                            }}
+                            currentPage="home"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

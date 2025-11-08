@@ -18,6 +18,7 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import { createPortfolio } from '@/lib/firebase/firestore';
 import { ROUTES } from '@/lib/constants/routes';
 import { slugify } from '@/lib/utils/slugify';
+import { createPreviewPortfolio } from '@/lib/utils/preview';
 
 const TOTAL_STEPS = 8;
 
@@ -213,8 +214,20 @@ function CreateContent() {
                     {/* Preview Section */}
                     <div className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
                         <LivePreview
-                            templateId={templateId}
-                            data={{ personal: personalData }}
+                            portfolio={createPreviewPortfolio(
+                                user?.id || '',
+                                templateId,
+                                slug,
+                                {
+                                    personal: personalData,
+                                    experience: experienceData,
+                                    projects: projectsData,
+                                    skills: skillsData,
+                                    socials: socialsData,
+                                    theme: themeData,
+                                }
+                            )}
+                            currentPage="home"
                         />
                     </div>
                 </div>
