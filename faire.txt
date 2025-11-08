@@ -4,3 +4,9 @@
     mon code je veux les use.
 -  recuperer bien les donnees et les afficher dans la page d'accueil d'admin(users, portolios, etc...).
 - verifier que chaque modifications faite dans la page de settings d'admin affecte bien le site comme il faut.
+- dans la page admin/newsletter, griser les boutons d'exports (to txt et to csv) quand il n'ya pas encore de subscriber.
+- gerer bien les pricing et les plans. je devrais pouvoir modifier les plans et les prix depuis ma 
+    page d'admin et on aura seulement qu'a afficher dans la page de pricing.
+
+- quand je clique sur get started depuis la page de pricing on m'emmene encore sur signup alors que je suis deja connecte
+    donc faut regler ca.

@@ -52,7 +52,7 @@ export default function PricingPage() {
     ];
 
     return (
-        <div className="py-20 md:py-32">
+        <div className="py-12 md:py-16">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -74,7 +74,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Pricing Cards */}
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                     {plans.map((plan, index) => (
                         <motion.div
                             key={plan.name}
