@@ -60,7 +60,7 @@ export default function LoginPage() {
             animate={{ opacity: 1, y: 0 }}
             className="w-full max-w-md"
         >
-            <Card>
+            <div>
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-foreground mb-2">Welcome back</h1>
                     <p className="text-foreground/70">Sign in to your account</p>
@@ -130,7 +130,7 @@ export default function LoginPage() {
                         Sign up
                     </Link>
                 </p>
-            </Card>
+            </div>
         </motion.div>
     );
 }

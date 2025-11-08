@@ -10,3 +10,7 @@
 
 - quand je clique sur get started depuis la page de pricing on m'emmene encore sur signup alors que je suis deja connecte
     donc faut regler ca.
+- pouvoir rendre visible et invisible le mot de passe lors de sa saisie dans les pages d'authentifications.
+- voir si je peux coder le texte "Google" dans or continue with google
+     au niveau des pages d'authentifications comme le texte de google avec les 
+     lettres colores (chaque lettre avec sa couleur)
