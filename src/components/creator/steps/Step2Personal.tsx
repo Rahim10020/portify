@@ -158,7 +158,7 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
                     <Button type="button" variant="ghost" onClick={onBack}>
                         Back
                     </Button>
-                    <Button type="submit" size="lg">
+                    <Button type="submit" size="md">
                         Continue
                     </Button>
                 </div>

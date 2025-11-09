@@ -118,7 +118,7 @@ export const Step8Publish = ({
                     <Button type="button" variant="ghost" onClick={onBack} disabled={isLoading}>
                         Back
                     </Button>
-                    <Button type="submit" size="lg" isLoading={isLoading}>
+                    <Button type="submit" size="md" isLoading={isLoading}>
                         {published ? 'Publish Portfolio' : 'Save as Draft'}
                     </Button>
                 </div>

@@ -22,4 +22,33 @@
         mettre son titre au cas ou on aurais pas ca dans nos options.
     + short bio: lui proposer des bio (en fonction de son professional title) et si
         possible mettre un lien vers chat gpt qui va lui fournir une bonne bio en fonction 
-        de son profession title (on peut mettre un bon prompt pour chat gpt).
+        de son profession title (on peut mettre un bon prompt pour chat gpt). aussi, 
+        lui meme il peut ecrire sa bio s'il le souhaite
+    + long bio: Meme chose pour le short bio.
+    + location: On peut lui proposer les locations et il va choisir. il peut toute fois lui meme mettre son location.
+
+    * Meme choses pour les autres champs des autres step qui en auront besoin. (description, position)
+
+
+- ajouter des fleches dans les boutons "back" et "continue" pour plus de clarte dans tous les steps. 
+    une fleche appropriee pour "publish portofolio"
+- dans le step5 la partie des skills: quand je 
+    selectionne un skill , il est selectionne et les autres ne s'affichent plus pour que je selectionne.
+
+- Erreur a regler:
+
+    Console Error
+
+    Failed to load portfolios
+    src/lib/firebase/firestore.ts (116:15) @ getUserPortfolios
+
+
+    114 |     } catch (error) {
+    115 |         logger.error('Failed to get user portfolios', error, userId);
+    > 116 |         throw new Error('Failed to load portfolios');
+        |               ^
+    117 |     }
+    118 | };
+    119 |
+
+- il y'a un serieux souci avec l'affichage du preview qu'il faut vraiment regler.

@@ -320,7 +320,7 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
                 <Button
                     type="button"
                     onClick={handleContinue}
-                    size="lg"
+                    size="md"
                     disabled={projects.length === 0}
                 >
                     Continue

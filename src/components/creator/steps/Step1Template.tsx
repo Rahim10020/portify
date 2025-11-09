@@ -60,7 +60,7 @@ export const Step1Template = ({ selectedTemplateId, onSelect, onNext }: Step1Tem
             </div>
 
             <div className="flex justify-end pt-6">
-                <Button onClick={onNext} disabled={!selectedTemplateId} size="lg">
+                <Button onClick={onNext} disabled={!selectedTemplateId} size="md">
                     Continue
                 </Button>
             </div>

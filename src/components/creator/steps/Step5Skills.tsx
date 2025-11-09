@@ -193,7 +193,7 @@ export const Step5Skills = ({ data, onUpdate, onNext, onBack }: Step5SkillsProps
                 <Button
                     type="button"
                     onClick={handleContinue}
-                    size="lg"
+                    size="md"
                     disabled={skills.length === 0}
                 >
                     Continue

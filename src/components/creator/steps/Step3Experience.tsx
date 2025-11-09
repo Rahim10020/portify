@@ -156,7 +156,7 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
                 <Button type="button" variant="ghost" onClick={onBack}>
                     Back
                 </Button>
-                <Button type="button" onClick={handleContinue} size="lg">
+                <Button type="button" onClick={handleContinue} size="md">
                     Continue
                 </Button>
             </div>
