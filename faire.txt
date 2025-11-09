@@ -13,5 +13,13 @@
 - pouvoir rendre visible et invisible le mot de passe lors de sa saisie dans les pages d'authentifications.
 - voir si je peux coder le texte "Google" dans or continue with google
      au niveau des pages d'authentifications comme le texte de google avec les 
-     lettres colores (chaque lettre avec sa couleur)
-- voir si on peut gerer les forgot password
+     lettres colores (chaque lettre avec sa couleur).
+- voir si on peut gerer les forgot password.
+- voir si on peut faire en sorte que quand on est sur la page de create/ on n'affiche 
+    pas le header et le progressbar prend la place du header.
+- amelioration du formulaire de creation de portfolio step2: 
+    + professional title: proposer des titres mais permettre a la personne de 
+        mettre son titre au cas ou on aurais pas ca dans nos options.
+    + short bio: lui proposer des bio (en fonction de son professional title) et si
+        possible mettre un lien vers chat gpt qui va lui fournir une bonne bio en fonction 
+        de son profession title (on peut mettre un bon prompt pour chat gpt).
