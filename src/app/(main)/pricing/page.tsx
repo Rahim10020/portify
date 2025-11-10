@@ -9,8 +9,11 @@ import { Check } from 'lucide-react';
 import { getAllPlans } from '@/lib/firebase/firestore';
 import { Plan } from '@/types';
 import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { ROUTES } from '@/lib/constants/routes';
 
 export default function PricingPage() {
+    const { user, isAuthenticated } = useAuth();
     const [plans, setPlans] = useState<Plan[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -95,13 +98,13 @@ export default function PricingPage() {
                                     </div>
                                 </div>
 
-                                <Link href={plan.href} className="block mb-6">
+                                <Link href={isAuthenticated ? ROUTES.DASHBOARD : plan.href} className="block mb-6">
                                     <Button
                                         className="w-full"
                                         variant={plan.highlighted ? 'primary' : 'secondary'}
                                         size="lg"
                                     >
-                                        {plan.cta}
+                                        {isAuthenticated ? 'Go to Dashboard' : plan.cta}
                                     </Button>
                                 </Link>
 
