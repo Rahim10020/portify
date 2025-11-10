@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { TEMPLATES } from '@/lib/constants/templates';
-import { Check } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 
 interface Step1TemplateProps {
     selectedTemplateId: string;
@@ -62,6 +62,7 @@ export const Step1Template = ({ selectedTemplateId, onSelect, onNext }: Step1Tem
             <div className="flex justify-end pt-6">
                 <Button onClick={onNext} disabled={!selectedTemplateId} size="md">
                     Continue
+                    <ArrowRight size={16} className="ml-2" />
                 </Button>
             </div>
         </div>

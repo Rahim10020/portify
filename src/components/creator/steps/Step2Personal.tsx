@@ -12,7 +12,7 @@ import { personalInfoSchema, PersonalInfoInput } from '@/lib/utils/validation';
 import { uploadProfilePhoto } from '@/lib/cloudinary/upload';
 import { ImageUploadWithPreview } from '@/components/ui/ImageUploadWithPreview';
 import { PROFESSIONAL_TITLES, BIO_SUGGESTIONS, LOCATION_SUGGESTIONS } from '@/lib/constants/suggestions';
-import { Upload, X, ExternalLink } from 'lucide-react';
+import { Upload, X, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step2PersonalProps {
     data: PersonalInfoInput & { photo?: string };
@@ -213,10 +213,12 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
 
                 <div className="flex justify-between pt-6">
                     <Button type="button" variant="ghost" onClick={onBack}>
+                        <ArrowLeft size={16} className="mr-2" />
                         Back
                     </Button>
                     <Button type="submit" size="md">
                         Continue
+                        <ArrowRight size={16} className="ml-2" />
                     </Button>
                 </div>
             </form>

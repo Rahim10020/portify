@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { socialsSchema, SocialsInput } from '@/lib/utils/validation';
 import { Socials } from '@/types';
-import { Github, Linkedin, Twitter, Mail, Globe, Dribbble } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Globe, Dribbble, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step6ContactProps {
     data: Socials;
@@ -116,10 +116,12 @@ export const Step6Contact = ({ data, onUpdate, onNext, onBack }: Step6ContactPro
 
                 <div className="flex justify-between pt-6">
                     <Button type="button" variant="ghost" onClick={onBack}>
+                        <ArrowLeft size={16} className="mr-2" />
                         Back
                     </Button>
                     <Button type="submit" size="md">
                         Continue
+                        <ArrowRight size={16} className="ml-2" />
                     </Button>
                 </div>
             </form>

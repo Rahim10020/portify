@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/Card';
 import { experienceSchema, ExperienceInput } from '@/lib/utils/validation';
 import { Experience } from '@/types';
 import { POSITION_SUGGESTIONS, DESCRIPTION_SUGGESTIONS } from '@/lib/constants/suggestions';
-import { Plus, Trash2, Briefcase } from 'lucide-react';
+import { Plus, Trash2, Briefcase, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step3ExperienceProps {
     data: Experience[];
@@ -206,10 +206,12 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
             {/* Navigation */}
             <div className="flex justify-between pt-6">
                 <Button type="button" variant="ghost" onClick={onBack}>
+                    <ArrowLeft size={16} className="mr-2" />
                     Back
                 </Button>
                 <Button type="button" onClick={handleContinue} size="md">
                     Continue
+                    <ArrowRight size={16} className="ml-2" />
                 </Button>
             </div>
         </div>

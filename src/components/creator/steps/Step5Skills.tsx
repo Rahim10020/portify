@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { skillSchema, SkillInput } from '@/lib/utils/validation';
 import { Skill } from '@/types';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step5SkillsProps {
     data: Skill[];
@@ -188,6 +188,7 @@ export const Step5Skills = ({ data, onUpdate, onNext, onBack }: Step5SkillsProps
             {/* Navigation */}
             <div className="flex justify-between pt-6">
                 <Button type="button" variant="ghost" onClick={onBack}>
+                    <ArrowLeft size={16} className="mr-2" />
                     Back
                 </Button>
                 <Button
@@ -197,6 +198,7 @@ export const Step5Skills = ({ data, onUpdate, onNext, onBack }: Step5SkillsProps
                     disabled={skills.length === 0}
                 >
                     Continue
+                    <ArrowRight size={16} className="ml-2" />
                 </Button>
             </div>
 

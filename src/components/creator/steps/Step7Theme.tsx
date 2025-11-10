@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/Switch';
 import { Card } from '@/components/ui/Card';
 import { Theme } from '@/types';
 import { useFeatures } from '@/lib/hooks/useFeatures';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step7ThemeProps {
     data: Theme;
@@ -177,10 +178,12 @@ export const Step7Theme = ({ data, onUpdate, onNext, onBack }: Step7ThemeProps) 
             {/* Navigation */}
             <div className="flex justify-between pt-6">
                 <Button type="button" variant="ghost" onClick={onBack}>
+                    <ArrowLeft size={16} className="mr-2" />
                     Back
                 </Button>
                 <Button type="button" onClick={handleContinue} size="md">
                     Continue
+                    <ArrowRight size={16} className="ml-2" />
                 </Button>
             </div>
         </div>

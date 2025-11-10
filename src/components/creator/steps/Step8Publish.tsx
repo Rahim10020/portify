@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Switch } from '@/components/ui/Switch';
 import { slugSchema, SlugInput } from '@/lib/utils/validation';
 import { slugify } from '@/lib/utils/slugify';
-import { Check } from 'lucide-react';
+import { Check, ArrowLeft, ArrowUp } from 'lucide-react';
 
 interface Step8PublishProps {
     slug: string;
@@ -116,10 +116,12 @@ export const Step8Publish = ({
 
                 <div className="flex justify-between pt-6">
                     <Button type="button" variant="ghost" onClick={onBack} disabled={isLoading}>
+                        <ArrowLeft size={16} className="mr-2" />
                         Back
                     </Button>
                     <Button type="submit" size="md" isLoading={isLoading}>
                         {published ? 'Publish Portfolio' : 'Save as Draft'}
+                        <ArrowUp size={16} className="ml-2" />
                     </Button>
                 </div>
             </form>

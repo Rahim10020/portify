@@ -14,7 +14,7 @@ import { Project } from '@/types';
 import { uploadProjectImage } from '@/lib/cloudinary/upload';
 import { ImageUploadWithPreview } from '@/components/ui/ImageUploadWithPreview';
 import { PROJECT_DESCRIPTION_SUGGESTIONS } from '@/lib/constants/suggestions';
-import { Plus, Trash2, FolderOpen, X, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, Trash2, FolderOpen, X, Upload, Image as ImageIcon, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step4ProjectsProps {
     data: Project[];
@@ -288,6 +288,7 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
             {/* Navigation */}
             <div className="flex justify-between pt-6">
                 <Button type="button" variant="ghost" onClick={onBack}>
+                    <ArrowLeft size={16} className="mr-2" />
                     Back
                 </Button>
                 <Button
@@ -297,6 +298,7 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
                     disabled={projects.length === 0}
                 >
                     Continue
+                    <ArrowRight size={16} className="ml-2" />
                 </Button>
             </div>
 
