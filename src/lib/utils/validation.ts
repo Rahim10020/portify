@@ -64,6 +64,10 @@ export const newsletterSchema = z.object({
     email: z.string().email('Invalid email address'),
 });
 
+export const forgotPasswordSchema = z.object({
+    email: z.string().email('Invalid email address'),
+});
+
 export type SignUpInput = z.infer<typeof signUpSchema>;
 export type SignInInput = z.infer<typeof signInSchema>;
 export type PersonalInfoInput = z.infer<typeof personalInfoSchema>;
@@ -73,3 +77,4 @@ export type SkillInput = z.infer<typeof skillSchema>;
 export type SocialsInput = z.infer<typeof socialsSchema>;
 export type SlugInput = z.infer<typeof slugSchema>;
 export type NewsletterInput = z.infer<typeof newsletterSchema>;
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;

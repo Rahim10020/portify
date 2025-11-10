@@ -6,6 +6,7 @@ import {
     signInWithPopup,
     updateProfile,
     User as FirebaseUser,
+    sendPasswordResetEmail as firebaseSendPasswordResetEmail,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from './config';
@@ -103,4 +104,8 @@ export const getCurrentUser = async (uid: string): Promise<User | null> => {
         id: userDoc.id,
         ...userDoc.data(),
     } as User;
+};
+
+export const sendPasswordResetEmail = async (email: string): Promise<void> => {
+    await firebaseSendPasswordResetEmail(auth, email);
 };

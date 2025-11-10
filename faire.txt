@@ -1,6 +1,5 @@
 - je veux gerer les forgot password.
-- voir si on peut faire en sorte que quand on est sur la page de create/ on n'affiche 
-    pas le header et le progressbar prend la place du header.
+
 - amelioration du formulaire de creation de portfolio step2: 
     + professional title: proposer des titres mais permettre a la personne de 
         mettre son titre au cas ou on aurais pas ca dans nos options.
