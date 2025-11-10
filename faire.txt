@@ -1,8 +1,4 @@
-
-- voir si je peux coder le texte "Google" dans or continue with google
-     au niveau des pages d'authentifications comme le texte de google avec les 
-     lettres colores (chaque lettre avec sa couleur).
-- voir si on peut gerer les forgot password.
+- je veux gerer les forgot password.
 - voir si on peut faire en sorte que quand on est sur la page de create/ on n'affiche 
     pas le header et le progressbar prend la place du header.
 - amelioration du formulaire de creation de portfolio step2: 

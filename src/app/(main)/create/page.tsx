@@ -199,10 +199,14 @@ function CreateContent() {
     return (
         <div className="min-h-screen bg-muted/30">
             <div className="container mx-auto px-4 py-8">
-                {/* Progress Bar */}
-                <div className="mb-8">
-                    <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+                {/* Progress Bar - positioned at top like header */}
+                <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+                    <div className="container mx-auto px-4 py-4">
+                        <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+                    </div>
                 </div>
+                {/* Add padding to account for fixed progress bar */}
+                <div className="pt-20"></div>
 
                 {/* Main Content */}
                 <div className="grid lg:grid-cols-2 gap-8">
