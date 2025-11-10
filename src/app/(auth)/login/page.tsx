@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { PasswordInput } from '@/components/ui/PasswordInput';
 import { useToast } from '@/components/ui/Toast';
 import { signInWithEmail, signInWithGoogle } from '@/lib/firebase/auth';
 import { signInSchema, SignInInput } from '@/lib/utils/validation';
@@ -74,9 +75,8 @@ export default function LoginPage() {
                         {...register('email')}
                     />
 
-                    <Input
+                    <PasswordInput
                         label="Password"
-                        type="password"
                         placeholder="••••••••"
                         error={errors.password?.message}
                         {...register('password')}
