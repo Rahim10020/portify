@@ -3,6 +3,7 @@
 import { PortfolioData } from '@/types';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
 interface MinimalHomeProps {
     data: PortfolioData;
@@ -87,12 +88,18 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                                     {/* Project Image */}
                                     {project.images.length > 0 && (
                                         <div className="aspect-[4/3] mb-6 overflow-hidden border transition-colors" style={{ borderColor: themeColors.text + '20' }}>
-                                            <motion.img
-                                                src={project.images[0]}
-                                                alt={project.title}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                            <motion.div
+                                                className="w-full h-full"
                                                 whileHover={{ scale: 1.05 }}
-                                            />
+                                            >
+                                                <OptimizedImage
+                                                    src={project.images[0]}
+                                                    alt={project.title}
+                                                    width={600}
+                                                    height={450}
+                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                                />
+                                            </motion.div>
                                         </div>
                                     )}
 

@@ -3,6 +3,7 @@
 import { PortfolioData } from '@/types';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code2, ExternalLink, Github } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
 interface DevFolioHomeProps {
     data: PortfolioData;
@@ -198,10 +199,13 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                                     {/* Project Image */}
                                     {project.images.length > 0 && (
                                         <div className="aspect-video bg-current/5 overflow-hidden">
-                                            <img
+                                            <OptimizedImage
                                                 src={project.images[0]}
                                                 alt={project.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                width={800}
+                                                height={450}
+                                                className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                                objectFit="cover"
                                             />
                                         </div>
                                     )}

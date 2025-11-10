@@ -4,6 +4,7 @@ import { PortfolioData } from '@/types';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import { useState } from 'react';
+import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
 interface DesignStudioHomeProps {
     data: PortfolioData;
@@ -162,9 +163,11 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             className="w-96 h-96 rounded-[3rem] overflow-hidden border-8 shadow-2xl"
                             style={{ borderColor: themeColors.accent }}
                         >
-                            <img
+                            <OptimizedImage
                                 src={personal.photo}
                                 alt={personal.name}
+                                width={384}
+                                height={384}
                                 className="w-full h-full object-cover"
                             />
                         </motion.div>
@@ -202,12 +205,13 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             <div className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
                                 {project.images.length > 0 && (
                                     <div className="relative overflow-hidden">
-                                        <motion.img
+                                        <OptimizedImage
                                             src={project.images[0]}
                                             alt={project.title}
+                                            width={600}
+                                            height={400}
                                             className="w-full h-auto"
-                                            whileHover={{ scale: 1.1 }}
-                                            transition={{ duration: 0.6 }}
+                                            objectFit="cover"
                                         />
                                         <div
                                             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
@@ -335,9 +339,11 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                         style={{ backgroundColor: themeColors.bg }}
                     >
                         {selectedProject.images.length > 0 && (
-                            <img
+                            <OptimizedImage
                                 src={selectedProject.images[0]}
                                 alt={selectedProject.title}
+                                width={1024}
+                                height={384}
                                 className="w-full h-96 object-cover"
                             />
                         )}

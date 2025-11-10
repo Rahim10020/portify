@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ToastContainer } from '@/components/ui/Toast';
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
+import { useErrorBoundary } from '@/lib/utils/logger';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -56,6 +57,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Initialize error boundary logging
+  useErrorBoundary();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
