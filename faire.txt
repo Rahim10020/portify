@@ -1,5 +1,3 @@
-- ajouter des fleches dans les boutons "back" et "continue" pour plus de clarte dans tous les steps. 
-    une fleche appropriee pour "publish portofolio"
 - dans le step5 la partie des skills: quand je 
     selectionne un skill , il est selectionne et les autres ne s'affichent plus pour que je selectionne.
 
