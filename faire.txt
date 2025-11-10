@@ -1,5 +1,3 @@
-- il a des fichiers (des composants) (imageoptimiser ,logger...) que j'ai cree mais qui ne sont pas encore utilise dans 
-    mon code je veux les use.
 -  recuperer bien les donnees et les afficher dans la page d'accueil d'admin(users, portolios, etc...).
 - verifier que chaque modifications faite dans la page de settings d'admin affecte bien le site comme il faut.
 - dans la page admin/newsletter, griser les boutons d'exports (to txt et to csv) quand il n'ya pas encore de subscriber.

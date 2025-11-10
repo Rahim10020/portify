@@ -1,11 +1,44 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants/routes';
 import { Users, Settings, Mail, BarChart3 } from 'lucide-react';
+import { getAllUsers, getTotalPortfolios, getTotalViews, getAllNewsletterSubscribers } from '@/lib/firebase/firestore';
 
 export default function AdminPage() {
+    const [stats, setStats] = useState({
+        totalUsers: 0,
+        totalPortfolios: 0,
+        totalSubscribers: 0,
+        totalViews: 0,
+    });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const [users, portfolios, subscribers, views] = await Promise.all([
+                    getAllUsers(),
+                    getTotalPortfolios(),
+                    getAllNewsletterSubscribers(),
+                    getTotalViews(),
+                ]);
+
+                setStats({
+                    totalUsers: users.length,
+                    totalPortfolios: portfolios,
+                    totalSubscribers: subscribers.length,
+                    totalViews: views,
+                });
+            } catch (error) {
+                console.error('Failed to fetch stats:', error);
+            }
+        };
+
+        fetchStats();
+    }, []);
+
     return (
         <div className="container mx-auto px-4 py-12">
             <div className='max-w-3xl mx-auto space-y-6'>
@@ -17,22 +50,22 @@ export default function AdminPage() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     <Card>
                         <div className="text-sm text-foreground/70 mb-1">Total Users</div>
-                        <div className="text-3xl font-bold text-foreground">0</div>
+                        <div className="text-3xl font-bold text-foreground">{stats.totalUsers}</div>
                     </Card>
 
                     <Card>
                         <div className="text-sm text-foreground/70 mb-1">Total Portfolios</div>
-                        <div className="text-3xl font-bold text-foreground">0</div>
+                        <div className="text-3xl font-bold text-foreground">{stats.totalPortfolios}</div>
                     </Card>
 
                     <Card>
                         <div className="text-sm text-foreground/70 mb-1">Newsletter Subscribers</div>
-                        <div className="text-3xl font-bold text-foreground">0</div>
+                        <div className="text-3xl font-bold text-foreground">{stats.totalSubscribers}</div>
                     </Card>
 
                     <Card>
                         <div className="text-sm text-foreground/70 mb-1">Total Views</div>
-                        <div className="text-3xl font-bold text-foreground">0</div>
+                        <div className="text-3xl font-bold text-foreground">{stats.totalViews}</div>
                     </Card>
                 </div>
 

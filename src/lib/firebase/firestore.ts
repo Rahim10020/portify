@@ -291,3 +291,27 @@ export const getAllNewsletterSubscribers = async (): Promise<Array<{ id: string;
         throw new Error('Failed to load subscribers');
     }
 };
+
+export const getTotalPortfolios = async (): Promise<number> => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'portfolios'));
+        return querySnapshot.size;
+    } catch (error) {
+        logger.error('Failed to get total portfolios', error);
+        throw new Error('Failed to load total portfolios');
+    }
+};
+
+export const getTotalViews = async (): Promise<number> => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'portfolios'));
+        let totalViews = 0;
+        querySnapshot.forEach((doc) => {
+            totalViews += doc.data().views || 0;
+        });
+        return totalViews;
+    } catch (error) {
+        logger.error('Failed to get total views', error);
+        throw new Error('Failed to load total views');
+    }
+};
