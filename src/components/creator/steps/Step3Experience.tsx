@@ -6,9 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
+import { Select } from '@/components/ui/Select';
 import { Card } from '@/components/ui/Card';
 import { experienceSchema, ExperienceInput } from '@/lib/utils/validation';
 import { Experience } from '@/types';
+import { POSITION_SUGGESTIONS, DESCRIPTION_SUGGESTIONS } from '@/lib/constants/suggestions';
 import { Plus, Trash2, Briefcase } from 'lucide-react';
 
 interface Step3ExperienceProps {
@@ -21,15 +23,20 @@ interface Step3ExperienceProps {
 export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3ExperienceProps) => {
     const [experiences, setExperiences] = useState<Experience[]>(data);
     const [isAdding, setIsAdding] = useState(false);
+    const [selectedPosition, setSelectedPosition] = useState<string>('');
 
     const {
         register,
         handleSubmit,
         formState: { errors },
         reset,
+        setValue,
+        watch,
     } = useForm<ExperienceInput>({
         resolver: zodResolver(experienceSchema),
     });
+
+    const watchedPosition = watch('position');
 
     const onSubmit = (formData: ExperienceInput) => {
         const newExperience: Experience = {
@@ -48,6 +55,19 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
         const updatedExperiences = experiences.filter((exp) => exp.id !== id);
         setExperiences(updatedExperiences);
         onUpdate(updatedExperiences);
+    };
+
+    const handlePositionSelect = (value: string) => {
+        setSelectedPosition(value);
+        setValue('position', value);
+    };
+
+    const handleDescriptionSuggestion = (suggestion: string) => {
+        setValue('description', suggestion);
+    };
+
+    const getDescriptionSuggestions = (position: string) => {
+        return DESCRIPTION_SUGGESTIONS[position as keyof typeof DESCRIPTION_SUGGESTIONS] || DESCRIPTION_SUGGESTIONS.default;
     };
 
     const handleContinue = () => {
@@ -103,12 +123,23 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
                             {...register('company')}
                         />
 
-                        <Input
-                            label="Position *"
-                            placeholder="Senior Developer"
-                            error={errors.position?.message}
-                            {...register('position')}
-                        />
+                        <div className="space-y-2">
+                            <Select
+                                label="Position *"
+                                options={[
+                                    { value: '', label: 'Select a position or type your own...' },
+                                    ...POSITION_SUGGESTIONS.map(position => ({ value: position, label: position }))
+                                ]}
+                                value={selectedPosition}
+                                onChange={(e) => handlePositionSelect(e.target.value)}
+                                error={errors.position?.message}
+                            />
+                            <Input
+                                placeholder="Or type your custom position..."
+                                {...register('position')}
+                                className="mt-2"
+                            />
+                        </div>
 
                         <Input
                             label="Period *"
@@ -117,13 +148,34 @@ export const Step3Experience = ({ data, onUpdate, onNext, onBack }: Step3Experie
                             {...register('period')}
                         />
 
-                        <Textarea
-                            label="Description *"
-                            placeholder="Describe your responsibilities and achievements..."
-                            rows={4}
-                            error={errors.description?.message}
-                            {...register('description')}
-                        />
+                        <div className="space-y-2">
+                            <Textarea
+                                label="Description *"
+                                placeholder="Describe your responsibilities and achievements..."
+                                rows={4}
+                                error={errors.description?.message}
+                                {...register('description')}
+                            />
+                            {watchedPosition && (
+                                <div className="space-y-2">
+                                    <p className="text-sm text-foreground/70">Suggestions based on your position:</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {getDescriptionSuggestions(watchedPosition).map((suggestion, index) => (
+                                            <Button
+                                                key={index}
+                                                type="button"
+                                                variant="secondary"
+                                                size="sm"
+                                                onClick={() => handleDescriptionSuggestion(suggestion)}
+                                                className="text-xs"
+                                            >
+                                                Use this suggestion
+                                            </Button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
 
                         <div className="flex gap-3">
                             <Button type="submit">Add Experience</Button>

@@ -6,11 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
+import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { personalInfoSchema, PersonalInfoInput } from '@/lib/utils/validation';
 import { uploadProfilePhoto } from '@/lib/cloudinary/upload';
 import { ImageUploadWithPreview } from '@/components/ui/ImageUploadWithPreview';
-import { Upload, X } from 'lucide-react';
+import { PROFESSIONAL_TITLES, BIO_SUGGESTIONS, LOCATION_SUGGESTIONS } from '@/lib/constants/suggestions';
+import { Upload, X, ExternalLink } from 'lucide-react';
 
 interface Step2PersonalProps {
     data: PersonalInfoInput & { photo?: string };
@@ -22,15 +24,20 @@ interface Step2PersonalProps {
 export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalProps) => {
     const toast = useToast();
     const [photoUrl, setPhotoUrl] = useState<string | undefined>(data.photo);
+    const [selectedTitle, setSelectedTitle] = useState<string>(data.title || '');
 
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
+        watch,
     } = useForm<PersonalInfoInput>({
         resolver: zodResolver(personalInfoSchema),
         defaultValues: data,
     });
+
+    const watchedTitle = watch('title');
 
     const handlePhotoUpload = async (file: File) => {
         try {
@@ -45,6 +52,30 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
 
     const handleRemovePhoto = () => {
         setPhotoUrl(undefined);
+    };
+
+    const handleTitleSelect = (value: string) => {
+        setSelectedTitle(value);
+        setValue('title', value);
+    };
+
+    const handleBioSuggestion = (suggestion: string) => {
+        setValue('bio', suggestion);
+    };
+
+    const handleLongBioSuggestion = (suggestion: string) => {
+        setValue('longBio', suggestion);
+    };
+
+    const getBioSuggestions = (title: string) => {
+        return BIO_SUGGESTIONS[title as keyof typeof BIO_SUGGESTIONS] || BIO_SUGGESTIONS.default;
+    };
+
+    const generateChatGPTUrl = (type: 'short' | 'long', title: string) => {
+        const prompt = type === 'short'
+            ? `Write a professional short bio (max 200 characters) for a ${title}. Make it engaging and highlight key skills.`
+            : `Write a detailed professional bio for a ${title}. Include background, experience, skills, and career goals. Make it compelling and authentic.`;
+        return `https://chat.openai.com/?q=${encodeURIComponent(prompt)}`;
     };
 
     const onSubmit = (formData: PersonalInfoInput) => {
@@ -77,31 +108,105 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
                     {...register('name')}
                 />
 
-                <Input
-                    label="Professional Title *"
-                    placeholder="Full Stack Developer"
-                    error={errors.title?.message}
-                    {...register('title')}
-                />
+                <div className="space-y-2">
+                    <Select
+                        label="Professional Title *"
+                        options={[
+                            { value: '', label: 'Select a title or type your own...' },
+                            ...PROFESSIONAL_TITLES.map(title => ({ value: title, label: title }))
+                        ]}
+                        value={selectedTitle}
+                        onChange={(e) => handleTitleSelect(e.target.value)}
+                        error={errors.title?.message}
+                    />
+                    <Input
+                        placeholder="Or type your custom title..."
+                        {...register('title')}
+                        className="mt-2"
+                    />
+                </div>
 
-                <Textarea
-                    label="Short Bio * (Max 200 characters)"
-                    placeholder="A brief description about yourself..."
-                    rows={3}
-                    error={errors.bio?.message}
-                    {...register('bio')}
-                />
+                <div className="space-y-2">
+                    <Textarea
+                        label="Short Bio * (Max 200 characters)"
+                        placeholder="A brief description about yourself..."
+                        rows={3}
+                        error={errors.bio?.message}
+                        {...register('bio')}
+                    />
+                    {watchedTitle && (
+                        <div className="space-y-2">
+                            <p className="text-sm text-foreground/70">Suggestions based on your title:</p>
+                            <div className="flex flex-wrap gap-2">
+                                {getBioSuggestions(watchedTitle).map((suggestion, index) => (
+                                    <Button
+                                        key={index}
+                                        type="button"
+                                        variant="secondary"
+                                        size="sm"
+                                        onClick={() => handleBioSuggestion(suggestion)}
+                                        className="text-xs"
+                                    >
+                                        Use this suggestion
+                                    </Button>
+                                ))}
+                            </div>
+                            <a
+                                href={generateChatGPTUrl('short', watchedTitle)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                            >
+                                <ExternalLink size={14} />
+                                Get ChatGPT to write your bio
+                            </a>
+                        </div>
+                    )}
+                </div>
 
-                <Textarea
-                    label="Long Bio (Optional - For About Page)"
-                    placeholder="A more detailed description about your background, experience, and passion..."
-                    rows={5}
-                    {...register('longBio')}
-                />
+                <div className="space-y-2">
+                    <Textarea
+                        label="Long Bio (Optional - For About Page)"
+                        placeholder="A more detailed description about your background, experience, and passion..."
+                        rows={5}
+                        {...register('longBio')}
+                    />
+                    {watchedTitle && (
+                        <div className="space-y-2">
+                            <p className="text-sm text-foreground/70">Suggestions based on your title:</p>
+                            <div className="flex flex-wrap gap-2">
+                                {getBioSuggestions(watchedTitle).map((suggestion, index) => (
+                                    <Button
+                                        key={index}
+                                        type="button"
+                                        variant="secondary"
+                                        size="sm"
+                                        onClick={() => handleLongBioSuggestion(suggestion)}
+                                        className="text-xs"
+                                    >
+                                        Use this suggestion
+                                    </Button>
+                                ))}
+                            </div>
+                            <a
+                                href={generateChatGPTUrl('long', watchedTitle)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                            >
+                                <ExternalLink size={14} />
+                                Get ChatGPT to write your detailed bio
+                            </a>
+                        </div>
+                    )}
+                </div>
 
-                <Input
+                <Select
                     label="Location (Optional)"
-                    placeholder="San Francisco, CA"
+                    options={[
+                        { value: '', label: 'Select a location or type your own...' },
+                        ...LOCATION_SUGGESTIONS.map(location => ({ value: location, label: location }))
+                    ]}
                     error={errors.location?.message}
                     {...register('location')}
                 />

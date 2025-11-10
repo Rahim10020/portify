@@ -13,6 +13,7 @@ import { projectSchema, ProjectInput } from '@/lib/utils/validation';
 import { Project } from '@/types';
 import { uploadProjectImage } from '@/lib/cloudinary/upload';
 import { ImageUploadWithPreview } from '@/components/ui/ImageUploadWithPreview';
+import { PROJECT_DESCRIPTION_SUGGESTIONS } from '@/lib/constants/suggestions';
 import { Plus, Trash2, FolderOpen, X, Upload, Image as ImageIcon } from 'lucide-react';
 
 interface Step4ProjectsProps {
@@ -93,6 +94,10 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
         onUpdate(updatedProjects);
     };
 
+    const handleDescriptionSuggestion = (suggestion: string) => {
+        setValue('shortDescription', suggestion);
+    };
+
     const handleContinue = () => {
         onUpdate(projects);
         onNext();
@@ -151,13 +156,32 @@ export const Step4Projects = ({ data, onUpdate, onNext, onBack }: Step4ProjectsP
                             {...register('title')}
                         />
 
-                        <Textarea
-                            label="Short Description *"
-                            placeholder="A brief description of what this project does..."
-                            rows={3}
-                            error={errors.shortDescription?.message}
-                            {...register('shortDescription')}
-                        />
+                        <div className="space-y-2">
+                            <Textarea
+                                label="Short Description *"
+                                placeholder="A brief description of what this project does..."
+                                rows={3}
+                                error={errors.shortDescription?.message}
+                                {...register('shortDescription')}
+                            />
+                            <div className="space-y-2">
+                                <p className="text-sm text-foreground/70">Project description suggestions:</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {PROJECT_DESCRIPTION_SUGGESTIONS.slice(0, 3).map((suggestion, index) => (
+                                        <Button
+                                            key={index}
+                                            type="button"
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => handleDescriptionSuggestion(suggestion)}
+                                            className="text-xs"
+                                        >
+                                            Use this suggestion
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
 
                         <Textarea
                             label="Full Description (Optional)"
