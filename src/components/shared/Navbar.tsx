@@ -7,6 +7,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { signOut } from '@/lib/firebase/auth';
 import { useToast } from '@/components/ui/Toast';
+import { useAppSettings } from '@/lib/hooks/useAppSettings';
 import { ROUTES } from '@/lib/constants/routes';
 import { Menu, X, ChevronDown, User, Settings, LogOut, LayoutDashboard } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
@@ -17,6 +18,7 @@ export const Navbar = () => {
     const router = useRouter();
     const toast = useToast();
     const { user, isAuthenticated } = useAuth();
+    const { features } = useAppSettings();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef<HTMLDivElement>(null);
@@ -51,7 +53,7 @@ export const Navbar = () => {
 
     const navLinks = [
         { href: ROUTES.TEMPLATES, label: 'Templates' },
-        { href: ROUTES.PRICING, label: 'Pricing' },
+        ...(features?.pricingPageVisible ? [{ href: ROUTES.PRICING, label: 'Pricing' }] : []),
     ];
 
     return (

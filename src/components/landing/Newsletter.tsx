@@ -9,9 +9,11 @@ import { Input } from '@/components/ui/Input';
 import { useToast } from '@/components/ui/Toast';
 import { subscribeToNewsletter } from '@/lib/firebase/firestore';
 import { newsletterSchema, NewsletterInput } from '@/lib/utils/validation';
+import { useAppSettings } from '@/lib/hooks/useAppSettings';
 import { Mail } from 'lucide-react';
 
 export const Newsletter = () => {
+    const { features } = useAppSettings();
     const toast = useToast();
     const [loading, setLoading] = useState(false);
 
@@ -36,6 +38,11 @@ export const Newsletter = () => {
             setLoading(false);
         }
     };
+
+    // Don't render if newsletter is disabled
+    if (!features?.newsletterEnabled) {
+        return null;
+    }
 
     return (
         <section className="py-20 md:py-32">
