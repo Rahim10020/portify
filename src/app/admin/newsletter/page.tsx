@@ -125,11 +125,11 @@ export default function AdminNewsletterPage() {
 
                 {/* Export Buttons */}
                 <div className="flex gap-4 mb-6">
-                    <Button onClick={handleExport}>
+                    <Button onClick={handleExport} disabled={subscribers.length === 0}>
                         <Download size={16} className="mr-2" />
                         Export as TXT
                     </Button>
-                    <Button onClick={handleExportCSV} variant="secondary">
+                    <Button onClick={handleExportCSV} variant="secondary" disabled={subscribers.length === 0}>
                         <Download size={16} className="mr-2" />
                         Export as CSV
                     </Button>
