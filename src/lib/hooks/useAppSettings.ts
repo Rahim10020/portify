@@ -22,6 +22,7 @@ export const useAppSettings = () => {
                             pricingPageVisible: false,
                             newTemplatesNotification: true,
                         },
+                        plans: [],
                         updatedAt: new Date() as any,
                     };
                     setSettings(defaultSettings);
