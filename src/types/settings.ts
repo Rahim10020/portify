@@ -23,9 +23,26 @@ export interface AppFeatures {
     newTemplatesNotification: boolean;
 }
 
+export interface Plan {
+    id: string;
+    name: string;
+    price: number;
+    currency: string;
+    description: string;
+    features: string[];
+    limitations: string[];
+    cta: string;
+    href: string;
+    highlighted: boolean;
+    limits: PlanLimits;
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+}
+
 export interface AppSettings {
     pricingMode: PricingMode;
     limits: AppLimits;
     features: AppFeatures;
+    plans: Plan[];
     updatedAt: Timestamp;
 }

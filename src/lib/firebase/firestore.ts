@@ -15,7 +15,7 @@ import {
     DocumentData,
 } from 'firebase/firestore';
 import { db } from './config';
-import { Portfolio, User, AppSettings } from '@/types';
+import { Portfolio, User, AppSettings, Plan } from '@/types';
 import { logger } from '@/lib/utils/logger';
 
 // Helper pour convertir les timestamps Firestore
@@ -313,5 +313,70 @@ export const getTotalViews = async (): Promise<number> => {
     } catch (error) {
         logger.error('Failed to get total views', error);
         throw new Error('Failed to load total views');
+    }
+};
+
+// Plans
+export const getAllPlans = async (): Promise<Plan[]> => {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'plans'));
+
+        return querySnapshot.docs.map((doc) => {
+            const data = convertTimestamp(doc.data());
+            return {
+                id: doc.id,
+                ...data,
+            } as Plan;
+        });
+    } catch (error) {
+        logger.error('Failed to get all plans', error);
+        throw new Error('Failed to load plans');
+    }
+};
+
+export const createPlan = async (
+    planData: Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>
+): Promise<string> => {
+    try {
+        const planRef = doc(collection(db, 'plans'));
+
+        await setDoc(planRef, {
+            ...planData,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+        });
+
+        logger.info('Plan created', { planId: planRef.id });
+        return planRef.id;
+    } catch (error) {
+        logger.error('Failed to create plan', error);
+        throw new Error('Failed to create plan. Please try again.');
+    }
+};
+
+export const updatePlan = async (
+    id: string,
+    data: Partial<Plan>
+): Promise<void> => {
+    try {
+        await updateDoc(doc(db, 'plans', id), {
+            ...data,
+            updatedAt: serverTimestamp(),
+        });
+
+        logger.info('Plan updated', { planId: id });
+    } catch (error) {
+        logger.error('Failed to update plan', error);
+        throw new Error('Failed to update plan. Please try again.');
+    }
+};
+
+export const deletePlan = async (id: string): Promise<void> => {
+    try {
+        await deleteDoc(doc(db, 'plans', id));
+        logger.info('Plan deleted', { planId: id });
+    } catch (error) {
+        logger.error('Failed to delete plan', error);
+        throw new Error('Failed to delete plan. Please try again.');
     }
 };

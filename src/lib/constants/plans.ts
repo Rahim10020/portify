@@ -21,6 +21,8 @@ export const DEFAULT_LIMITS: AppLimits = {
     },
 };
 
+// Note: PLAN_PRICES is now deprecated. Plans are managed dynamically in Firestore.
+// This is kept for backward compatibility during migration.
 export const PLAN_PRICES = {
     pro: {
         monthly: 12,

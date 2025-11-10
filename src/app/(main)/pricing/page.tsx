@@ -1,55 +1,43 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { ROUTES } from '@/lib/constants/routes';
 import { Check } from 'lucide-react';
+import { getAllPlans } from '@/lib/firebase/firestore';
+import { Plan } from '@/types';
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
 
 export default function PricingPage() {
-    const plans = [
-        {
-            name: 'Free',
-            price: '0',
-            description: 'Perfect for getting started',
-            features: [
-                '1 Portfolio',
-                '6 Projects',
-                '3 Basic Templates',
-                'Custom URL',
-                'Basic Analytics',
-            ],
-            limitations: [
-                'Watermark included',
-                'No dark mode',
-                'Limited customization',
-            ],
-            cta: 'Get Started',
-            href: ROUTES.SIGNUP,
-            highlighted: false,
-        },
-        {
-            name: 'Pro',
-            price: '12',
-            description: 'For professionals who want more',
-            features: [
-                'Unlimited Portfolios',
-                'Unlimited Projects',
-                'All Templates (Premium included)',
-                'Dark Mode Support',
-                'Full Customization',
-                'No Watermark',
-                'Custom Domain',
-                'Advanced Analytics',
-                'Priority Support',
-            ],
-            limitations: [],
-            cta: 'Upgrade to Pro',
-            href: ROUTES.SIGNUP,
-            highlighted: true,
-        },
-    ];
+    const [plans, setPlans] = useState<Plan[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadPlans = async () => {
+            try {
+                const fetchedPlans = await getAllPlans();
+                setPlans(fetchedPlans);
+            } catch (error) {
+                console.error('Failed to load plans:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadPlans();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="py-12 md:py-16">
+                <div className="container mx-auto px-4">
+                    <LoadingSpinner size="lg" />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="py-12 md:py-16">
@@ -101,7 +89,7 @@ export default function PricingPage() {
                                     <p className="text-foreground/70 mb-4">{plan.description}</p>
                                     <div className="flex items-baseline justify-center gap-2">
                                         <span className="text-5xl font-bold text-foreground">
-                                            €{plan.price}
+                                            {plan.currency}{plan.price}
                                         </span>
                                         <span className="text-foreground/70">/month</span>
                                     </div>
