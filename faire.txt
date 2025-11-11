@@ -1,5 +1,6 @@
 - dans le step5 la partie des skills: quand je 
     selectionne un skill , il est selectionne et les autres ne s'affichent plus pour que je selectionne.
+    faudra regler ca. (et la personne pourra tjs saisir son propre skill s'il le souhaite)
 
 - Erreur a regler:
 
