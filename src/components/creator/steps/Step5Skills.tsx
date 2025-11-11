@@ -153,7 +153,7 @@ export const Step5Skills = ({ data, onUpdate, onNext, onBack }: Step5SkillsProps
             )}
 
             {/* Quick Add Suggestions */}
-            {!isAdding && skills.length === 0 && (
+            {!isAdding && (
                 <Card className="bg-muted/30">
                     <p className="text-sm text-foreground/70 mb-3">
                         Quick add common skills:
