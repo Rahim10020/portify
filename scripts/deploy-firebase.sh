@@ -9,9 +9,9 @@ echo "📦 Build Next.js..."
 npm run build
 npm run export
 
-# Deploy Firestore rules
-echo "🔥 Déploiement des règles Firestore..."
-firebase deploy --only firestore:rules
+# Deploy Firestore rules and indexes
+echo "🔥 Déploiement des règles et index Firestore..."
+firebase deploy --only firestore
 
 # Deploy Storage rules
 echo "📦 Déploiement des règles Storage..."
