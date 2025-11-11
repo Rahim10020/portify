@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants/routes';
-import { Users, Settings, Mail, BarChart3 } from 'lucide-react';
+import { Users, Settings, Mail } from 'lucide-react';
 import { getAllUsers, getTotalPortfolios, getTotalViews, getAllNewsletterSubscribers } from '@/lib/firebase/firestore';
 
 export default function AdminPage() {
@@ -40,7 +40,7 @@ export default function AdminPage() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-26">
             <div className='max-w-3xl mx-auto space-y-6'>
                 <div className="mb-8">
                     <h2 className="text-3xl font-bold text-foreground mb-2">Dashboard</h2>

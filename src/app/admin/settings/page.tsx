@@ -167,7 +167,7 @@ export default function AdminSettingsPage() {
 
     if (loading) {
         return (
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-35">
                 <LoadingSpinner size="lg" />
             </div>
         );
@@ -175,7 +175,7 @@ export default function AdminSettingsPage() {
 
     if (!settings) {
         return (
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-35">
                 <Card>
                     <p className="text-foreground/70">No settings found. Initializing defaults...</p>
                 </Card>

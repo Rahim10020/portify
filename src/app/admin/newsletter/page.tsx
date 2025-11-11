@@ -73,14 +73,14 @@ export default function AdminNewsletterPage() {
 
     if (loading) {
         return (
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-35">
                 <LoadingSpinner size="lg" />
             </div>
         );
     }
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-26">
             <div className='max-w-3xl mx-auto space-y-6'>
                 <div className="mb-8">
                     <h2 className="text-3xl font-bold text-foreground mb-2">Newsletter Subscribers</h2>
