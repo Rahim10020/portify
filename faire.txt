@@ -1,1 +1,2 @@
 - il y'a un serieux souci avec l'affichage du preview qu'il faut vraiment regler.
+- dimimuer un peu la taille de la partie d'upload de l'image de profil

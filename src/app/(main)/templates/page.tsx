@@ -11,7 +11,7 @@ import { Eye } from 'lucide-react';
 
 export default function TemplatesPage() {
     return (
-        <div className="py-20">
+        <div className="py-10">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16">
