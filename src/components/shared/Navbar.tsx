@@ -67,29 +67,29 @@ export const Navbar = () => {
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={`text-sm font-medium transition-colors hover:text-primary ${pathname === link.href ? 'text-primary' : 'text-foreground/70'
-                                    }`}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </div>
-
                     {/* Right Section */}
                     <div className="flex items-center gap-4">
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-8">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`text-sm font-medium transition-colors hover:text-primary ${pathname === link.href ? 'text-primary' : 'text-foreground/70'
+                                        }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+
                         <ThemeToggle />
 
                         {isAuthenticated ? (
                             <div className="relative" ref={userMenuRef}>
                                 <button
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                                    className="flex items-center cursor-pointer gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+                                    className="flex items-center cursor-pointer gap-2 px-2 py-1 rounded-lg hover:bg-muted transition-colors"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                                         {user?.photoURL ? (
@@ -178,6 +178,7 @@ export const Navbar = () => {
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
+
                     </div>
                 </div>
 
