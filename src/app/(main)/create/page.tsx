@@ -217,22 +217,24 @@ function CreateContent() {
 
                     {/* Preview Section */}
                     <div className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
-                        <LivePreview
-                            portfolio={createPreviewPortfolio(
-                                user?.id || '',
-                                templateId,
-                                slug,
-                                {
-                                    personal: personalData,
-                                    experience: experienceData,
-                                    projects: projectsData,
-                                    skills: skillsData,
-                                    socials: socialsData,
-                                    theme: themeData,
-                                }
-                            )}
-                            currentPage="home"
-                        />
+                        {templateId && (
+                            <LivePreview
+                                portfolio={createPreviewPortfolio(
+                                    user?.id || '',
+                                    templateId,
+                                    slug,
+                                    {
+                                        personal: personalData,
+                                        experience: experienceData,
+                                        projects: projectsData,
+                                        skills: skillsData,
+                                        socials: socialsData,
+                                        theme: themeData,
+                                    }
+                                )}
+                                currentPage="home"
+                            />
+                        )}
                     </div>
                 </div>
             </div>
