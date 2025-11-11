@@ -217,8 +217,9 @@ function CreateContent() {
 
                     {/* Preview Section */}
                     <div className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
-                        {templateId && (
+                        {templateId ? (
                             <LivePreview
+                                className="h-full"
                                 portfolio={createPreviewPortfolio(
                                     user?.id || '',
                                     templateId,
@@ -234,6 +235,15 @@ function CreateContent() {
                                 )}
                                 currentPage="home"
                             />
+                        ) : (
+                            <div className="h-full rounded-xl border border-border bg-background flex flex-col items-center justify-center text-center px-6 py-8 text-foreground/60">
+                                <h3 className="text-lg font-semibold text-foreground mb-2">
+                                    Choisissez un template pour prévisualiser votre portfolio
+                                </h3>
+                                <p>
+                                    Sélectionnez un template à l’étape précédente pour activer la prévisualisation en direct.
+                                </p>
+                            </div>
                         )}
                     </div>
                 </div>

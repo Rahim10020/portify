@@ -3,30 +3,90 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Monitor, Smartphone, Maximize2 } from 'lucide-react';
+import { cn } from '@/lib/utils/cn';
 import { TemplateRenderer } from '@/components/templates/TemplateRenderer';
 import { Portfolio } from '@/types';
 
 interface LivePreviewProps {
     portfolio: Portfolio;
     currentPage?: string;
+    className?: string;
 }
 
-export const LivePreview = ({ portfolio, currentPage = 'home' }: LivePreviewProps) => {
+export const LivePreview = ({
+    portfolio,
+    currentPage = 'home',
+    className,
+}: LivePreviewProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
     return (
         <>
-            {/* Trigger Button */}
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsOpen(true)}
-                className="fixed bottom-8 right-8 z-40 px-6 py-3 bg-primary text-white rounded-full shadow-xl flex items-center gap-2 font-medium hover:shadow-2xl transition-shadow"
+            {/* Inline Preview */}
+            <div
+                className={cn(
+                    'h-full rounded-xl border border-border bg-background overflow-hidden flex flex-col',
+                    className
+                )}
             >
-                <Monitor size={20} />
-                Live Preview
-            </motion.button>
+                <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-card">
+                    <div className="flex items-center gap-4">
+                        <h3 className="text-lg font-semibold text-foreground">Live Preview</h3>
+
+                        {/* Device Toggle */}
+                        <div className="flex items-center gap-2 bg-muted rounded-lg p-1">
+                            <button
+                                onClick={() => setDevice('desktop')}
+                                className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-colors ${device === 'desktop'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/60 hover:text-foreground'
+                                    }`}
+                            >
+                                <Monitor size={16} />
+                                Desktop
+                            </button>
+                            <button
+                                onClick={() => setDevice('mobile')}
+                                className={`px-3 py-1.5 rounded flex items-center gap-2 text-sm transition-colors ${device === 'mobile'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/60 hover:text-foreground'
+                                    }`}
+                            >
+                                <Smartphone size={16} />
+                                Mobile
+                            </button>
+                        </div>
+                    </div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsOpen(true)}
+                        className="p-2 hover:bg-muted rounded-lg transition-colors flex items-center gap-2 text-sm text-foreground/70"
+                    >
+                        <Maximize2 size={18} />
+                        Plein écran
+                    </motion.button>
+                </div>
+
+                <div className="flex-1 overflow-hidden bg-muted/30 flex items-center justify-center p-6">
+                    <motion.div
+                        key={device}
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className={`bg-background rounded-lg shadow-2xl overflow-hidden ${device === 'desktop'
+                            ? 'w-full h-full'
+                            : 'w-96 h-full max-h-[844px]'
+                            }`}
+                    >
+                        <div className="w-full h-full overflow-auto">
+                            <TemplateRenderer portfolio={portfolio} page={currentPage} />
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
 
             {/* Preview Modal */}
             <AnimatePresence>
