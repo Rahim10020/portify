@@ -1,6 +1,3 @@
-- il y a aussi un souci: je suis en light mode dans mon site mais quand 
-    je selectionne le template DevFolio ca passe en dark mode
-    (c'est a dire que tout mon ecran devien noir) qu'est ce qui cause ca?
 - dimimuer un peu la taille de la partie d'upload de l'image de profil
 - revoir bien la maniere dont l'affichage en plein ecran s'affiche 
     (c'est pas bien la. Ca prend pratiquement tout l'ecran de mon site et je 

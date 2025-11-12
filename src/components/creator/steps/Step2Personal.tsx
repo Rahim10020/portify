@@ -99,6 +99,7 @@ export const Step2Personal = ({ data, onUpdate, onNext, onBack }: Step2PersonalP
                     label="Profile Photo (Optional)"
                     maxSizeMB={5}
                     aspectRatio="square"
+                    className="max-w-[400px]"
                 />
 
                 <Input
