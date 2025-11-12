@@ -28,6 +28,7 @@ function CreateContent() {
     const { user } = useAuth();
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
     // Form data state
     const [templateId, setTemplateId] = useState('');
@@ -200,11 +201,13 @@ function CreateContent() {
         <div className="min-h-screen bg-muted/30">
             <div className="container mx-auto px-4 py-8">
                 {/* Progress Bar - positioned at top like header */}
-                <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
-                    <div className="container mx-auto px-4 py-4">
-                        <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+                {!isFullscreen && (
+                    <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+                        <div className="container mx-auto px-4 py-4">
+                            <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+                        </div>
                     </div>
-                </div>
+                )}
                 {/* Add padding to account for fixed progress bar */}
                 <div className="pt-20"></div>
 
@@ -234,6 +237,7 @@ function CreateContent() {
                                     }
                                 )}
                                 currentPage="home"
+                                onFullscreenChange={setIsFullscreen}
                             />
                         ) : (
                             <div className="h-full rounded-xl border border-border bg-background flex flex-col items-center justify-center text-center px-6 py-8 text-foreground/60">

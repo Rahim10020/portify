@@ -11,15 +11,27 @@ interface LivePreviewProps {
     portfolio: Portfolio;
     currentPage?: string;
     className?: string;
+    onFullscreenChange?: (isOpen: boolean) => void;
 }
 
 export const LivePreview = ({
     portfolio,
     currentPage = 'home',
     className,
+    onFullscreenChange,
 }: LivePreviewProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
+
+    const handleOpen = () => {
+        setIsOpen(true);
+        onFullscreenChange?.(true);
+    };
+
+    const handleClose = () => {
+        setIsOpen(false);
+        onFullscreenChange?.(false);
+    };
 
     return (
         <>
@@ -62,7 +74,7 @@ export const LivePreview = ({
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => { setDevice('desktop'); setIsOpen(true); }}
+                        onClick={() => { setDevice('desktop'); handleOpen(); }}
                         className="p-2 hover:bg-muted rounded-lg transition-colors flex items-center gap-2 text-sm text-foreground/70"
                     >
                         <Maximize2 size={18} />
@@ -95,8 +107,8 @@ export const LivePreview = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
-                        onClick={() => setIsOpen(false)}
+                        className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm"
+                        onClick={handleClose}
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
@@ -104,14 +116,14 @@ export const LivePreview = ({
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: 'spring', damping: 25 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="absolute top-5 left-10 right-5 bottom-5 bg-background rounded-2xl shadow-2xl overflow-hidden flex"
+                            className="absolute inset-0 bg-background overflow-hidden flex"
                         >
                             {/* Left Sidebar */}
                             <div className="w-16 flex items-center justify-center border-r border-border bg-card">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={handleClose}
                                     className="p-4 hover:bg-muted rounded-lg transition-colors"
                                 >
                                     <ArrowLeft size={32} className="text-foreground" />
@@ -119,9 +131,9 @@ export const LivePreview = ({
                             </div>
 
                             {/* Main Content */}
-                            <div className="flex-1 flex flex-col">
+                            <div className="flex-1 flex flex-col overflow-hidden">
                                 {/* Header */}
-                                <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-card">
+                                <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-card flex-shrink-0">
                                     <div className="flex items-center gap-4">
                                         <h3 className="text-lg font-semibold text-foreground">Live Preview</h3>
 
@@ -153,7 +165,7 @@ export const LivePreview = ({
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={handleClose}
                                         className="p-2 hover:bg-muted rounded-lg transition-colors"
                                     >
                                         <X size={20} className="text-foreground/70" />
@@ -161,7 +173,7 @@ export const LivePreview = ({
                                 </div>
 
                                 {/* Preview Frame */}
-                                <div className="flex-1 overflow-hidden bg-muted/30 flex items-center justify-center p-8">
+                                <div className="flex-1 overflow-hidden bg-muted/30 flex items-center justify-center p-8 min-h-0">
                                     <motion.div
                                         key={device}
                                         initial={{ scale: 0.9, opacity: 0 }}
