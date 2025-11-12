@@ -88,7 +88,7 @@ export const DesignStudioLayout = ({
 
             {/* Sidebar Navigation - Desktop */}
             <aside
-                className={`hidden lg:flex ${isPreview ? 'absolute' : 'fixed'} left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40`}
+                className={`${isMobile ? 'hidden' : ''} hidden lg:flex ${isPreview ? 'absolute' : 'fixed'} left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40`}
             >
                 {/* Logo */}
                 <a
@@ -212,10 +212,10 @@ export const DesignStudioLayout = ({
             </AnimatePresence>
 
             {/* Main Content */}
-            <main className="lg:pl-24 pt-16 lg:pt-0">{children}</main>
+            <main className={`${isMobile ? '' : 'lg:pl-24'} pt-16 lg:pt-0`}>{children}</main>
 
             {/* Footer */}
-            <footer className="lg:pl-24 border-t border-current/10 py-8 mt-20">
+            <footer className={`${isMobile ? '' : 'lg:pl-24'} border-t border-current/10 py-8 mt-20`}>
                 <div className="container mx-auto px-4 lg:px-8">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-sm opacity-60">

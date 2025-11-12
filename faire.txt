@@ -6,3 +6,7 @@
     en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche)
 
 -Gestion du responsive des templates:  mettre un menu hambuger en mode mobile sur les templates
+
+- ok voila les soucis. le menu hambuger s'affiche bien sur 
+    mobile mais les navigations qui s'affichent quand on est sur desktop sont 
+    toujours la. pour design studio, il faut faire parti la sidebar.

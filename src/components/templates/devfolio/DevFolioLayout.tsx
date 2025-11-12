@@ -62,7 +62,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children, isMobile = fa
                         </a>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className={`${isMobile ? 'hidden' : ''} hidden md:flex items-center gap-8`}>
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}

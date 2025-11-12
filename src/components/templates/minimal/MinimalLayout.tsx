@@ -60,7 +60,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                         </a>
 
                         {/* Desktop Navigation Links */}
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className={`${isMobile ? 'hidden' : ''} hidden md:flex items-center gap-8`}>
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
