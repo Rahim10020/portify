@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Portfolio } from '@/types';
 import { Moon, Sun, Menu, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,17 +12,16 @@ interface DevFolioLayoutProps {
 }
 
 export const DevFolioLayout = ({ portfolio, currentPage, children }: DevFolioLayoutProps) => {
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark'); // DevFolio default dark
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+        if (typeof window !== 'undefined') {
+            return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+        return 'light';
+    });
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { data } = portfolio;
 
     const canUseDarkMode = data.theme.darkModeEnabled;
-
-    useEffect(() => {
-        // Apply theme to document
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(theme);
-    }, [theme]);
 
     const toggleTheme = () => {
         if (canUseDarkMode) {

@@ -1,4 +1,3 @@
-- il y a un souci avec l'affichage du preview du template design studio
 - il y a aussi un souci: je suis en light mode dans mon site mais quand 
     je selectionne le template DevFolio ca passe en dark mode
     (c'est a dire que tout mon ecran devien noir) qu'est ce qui cause ca?
