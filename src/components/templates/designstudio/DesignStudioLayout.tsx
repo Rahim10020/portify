@@ -65,15 +65,22 @@ export const DesignStudioLayout = ({
             {/* Fixed Header - Mobile Only */}
             <header
                 className={`${isMobile ? 'flex' : 'lg:hidden'} ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
+                style={{ backgroundColor: `${themeColors.bg}E0` }}
             >
-                <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <a href={`/u/${portfolio.slug}`} className="font-bold text-xl">
+                <div className="container mx-auto px-4 h-16 flex items-center justify-between w-full">
+                    <a 
+                        href={`/u/${portfolio.slug}`} 
+                        className="font-bold text-xl"
+                        style={{ color: themeColors.text }}
+                    >
                         {data.personal.name.split(' ')[0]}
                     </a>
 
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
-                        className="p-2 hover:scale-110 transition-transform"
+                        className="p-2 hover:scale-110 transition-transform rounded-lg"
+                        style={{ color: themeColors.text }}
+                        aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
                         {menuOpen ? <X size={24} /> : (
                             <div className="space-y-1.5">
@@ -163,51 +170,84 @@ export const DesignStudioLayout = ({
             {/* Mobile Menu */}
             <AnimatePresence>
                 {menuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: 'spring', damping: 25 }}
-                        className={`lg:hidden ${isPreview ? 'absolute' : 'fixed'} inset-0 z-40 backdrop-blur-xl`}
-                        style={{ backgroundColor: `${themeColors.bg}F0` }}
-                    >
-                        <div className="container mx-auto px-4 pt-24 pb-8">
-                            <nav className="space-y-2">
-                                {navLinks.map((link, index) => (
-                                    <motion.a
-                                        key={link.href}
-                                        href={link.href}
-                                        initial={{ opacity: 0, x: 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className={`block text-3xl font-bold py-4 transition-all ${link.active ? '' : 'opacity-50 hover:opacity-100'
-                                            }`}
-                                        style={{ color: link.active ? themeColors.accent : themeColors.text }}
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        {link.label}
-                                    </motion.a>
-                                ))}
-                            </nav>
-
-                            {canUseDarkMode && (
-                                <motion.button
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.4 }}
-                                    onClick={() => {
-                                        toggleTheme();
-                                        setMenuOpen(false);
-                                    }}
-                                    className="mt-8 px-6 py-3 rounded-full flex items-center gap-3 font-medium"
-                                    style={{ backgroundColor: `${themeColors.accent}20`, color: themeColors.accent }}
+                    <>
+                        {/* Backdrop overlay */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMenuOpen(false)}
+                            className={`${isMobile ? 'block' : 'lg:hidden'} ${isPreview ? 'absolute' : 'fixed'} inset-0 z-[60] bg-black/20 backdrop-blur-sm`}
+                        />
+                        {/* Menu panel */}
+                        <motion.div
+                            initial={{ opacity: 0, x: '100%' }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                            className={`${isMobile ? 'flex' : 'lg:hidden'} flex-col ${isPreview ? 'absolute' : 'fixed'} inset-y-0 right-0 z-[70] w-full max-w-sm backdrop-blur-xl shadow-2xl`}
+                            style={{ 
+                                backgroundColor: theme === 'dark' 
+                                    ? 'rgba(0, 0, 0, 0.95)' 
+                                    : 'rgba(255, 255, 255, 0.95)'
+                            }}
+                        >
+                            {/* Close button */}
+                            <div className="flex items-center justify-between p-4 border-b border-current/10">
+                                <span className="font-bold text-xl" style={{ color: themeColors.text }}>
+                                    Menu
+                                </span>
+                                <button
+                                    onClick={() => setMenuOpen(false)}
+                                    className="p-2 hover:scale-110 transition-transform rounded-lg"
+                                    style={{ color: themeColors.text }}
+                                    aria-label="Fermer le menu"
                                 >
-                                    {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                                    Switch to {theme === 'dark' ? 'Light' : 'Dark'} Mode
-                                </motion.button>
-                            )}
-                        </div>
-                    </motion.div>
+                                    <X size={24} />
+                                </button>
+                            </div>
+
+                            <div className="flex-1 overflow-y-auto px-4 pt-8 pb-8">
+                                <nav className="space-y-2">
+                                    {navLinks.map((link, index) => (
+                                        <motion.a
+                                            key={link.href}
+                                            href={link.href}
+                                            initial={{ opacity: 0, x: 50 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className={`block text-2xl font-bold py-4 px-4 rounded-lg transition-all ${link.active ? '' : 'opacity-70 hover:opacity-100'
+                                                }`}
+                                            style={{ 
+                                                color: link.active ? themeColors.accent : themeColors.text,
+                                                backgroundColor: link.active ? `${themeColors.accent}10` : 'transparent'
+                                            }}
+                                            onClick={() => setMenuOpen(false)}
+                                        >
+                                            {link.label}
+                                        </motion.a>
+                                    ))}
+                                </nav>
+
+                                {canUseDarkMode && (
+                                    <motion.button
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.4 }}
+                                        onClick={() => {
+                                            toggleTheme();
+                                            setMenuOpen(false);
+                                        }}
+                                        className="mt-8 w-full px-6 py-3 rounded-full flex items-center justify-center gap-3 font-medium transition-all hover:scale-105"
+                                        style={{ backgroundColor: `${themeColors.accent}20`, color: themeColors.accent }}
+                                    >
+                                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                                        Switch to {theme === 'dark' ? 'Light' : 'Dark'} Mode
+                                    </motion.button>
+                                )}
+                            </div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
 

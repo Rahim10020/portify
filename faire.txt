@@ -5,8 +5,15 @@
     pour revenir en arriere.Donc on peut par exemple mettre un meme espace de 20
     en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche)
 
--Gestion du responsive des templates:  mettre un menu hambuger en mode mobile sur les templates
+- quand je clique sur les liens de navigations ca charge ma page mais c'est pas ce 
+    que je veux. Normalement quand on est dans le preview, on ne devrais 
+    pas charger ma page (je veux dire mon app web avant de voir les modifications) 
+    donc quand on clique sur un lien de navigation, ca devrais aller sur 
+    la page en question sans charger ma page. j'espere que tu vois ce que je veux dire.
 
-- ok voila les soucis. le menu hambuger s'affiche bien sur 
-    mobile mais les navigations qui s'affichent quand on est sur desktop sont 
-    toujours la. pour design studio, il faut faire parti la sidebar.
+- revoir le codage de la page not-found (c'est pas jolie)
+- revoir le responsive de devfolio : partie skills et footer
+- revoir le responsive de design studio: partie projects, et what i do,
+- Remplacer les noms des reseaux sociaux par leur icones
+- revoir le hover des boutons dans Minimal
+- revoir le responsive dans Minimal: partie projects, skills, et footer
