@@ -139,6 +139,46 @@ const getDefaultPlaceholderData = (templateId: string): Partial<PortfolioData> =
     }
 };
 
+// Helper function to merge objects deeply, keeping user data when provided
+const deepMerge = <T extends Record<string, any>>(defaultObj: T, userObj: Partial<T> | undefined): T => {
+    if (!userObj) return defaultObj;
+    
+    const merged = { ...defaultObj };
+    
+    for (const key in userObj) {
+        const userValue = userObj[key];
+        const defaultValue = defaultObj[key];
+        
+        // If user value is null, undefined, or empty string, keep default
+        if (userValue === null || userValue === undefined || userValue === '') {
+            continue;
+        }
+        
+        // If both are objects (and not arrays), merge recursively
+        if (
+            typeof userValue === 'object' &&
+            typeof defaultValue === 'object' &&
+            !Array.isArray(userValue) &&
+            !Array.isArray(defaultValue)
+        ) {
+            merged[key] = deepMerge(defaultValue, userValue);
+        } else {
+            // Otherwise, use user value
+            merged[key] = userValue;
+        }
+    }
+    
+    return merged;
+};
+
+// Helper function to merge arrays - use user array if it has items, otherwise use default
+const mergeArray = <T>(defaultArray: T[], userArray: T[] | undefined): T[] => {
+    if (!userArray || userArray.length === 0) {
+        return defaultArray;
+    }
+    return userArray;
+};
+
 export const createPreviewPortfolio = (
     userId: string,
     templateId: string,
@@ -148,6 +188,18 @@ export const createPreviewPortfolio = (
     const now = new Date();
     const defaultData = getDefaultPlaceholderData(templateId);
 
+    // Merge personal info - keep user values when provided, otherwise use defaults
+    const mergedPersonal = deepMerge(defaultData.personal!, data.personal);
+    
+    // For arrays, use user data if it exists and has items, otherwise use defaults
+    const mergedExperience = mergeArray(defaultData.experience || [], data.experience);
+    const mergedProjects = mergeArray(defaultData.projects || [], data.projects);
+    const mergedSkills = mergeArray(defaultData.skills || [], data.skills);
+    
+    // Merge socials and theme objects deeply
+    const mergedSocials = deepMerge(defaultData.socials!, data.socials);
+    const mergedTheme = deepMerge(defaultData.theme!, data.theme);
+
     return {
         id: 'preview',
         userId,
@@ -156,16 +208,16 @@ export const createPreviewPortfolio = (
         isPublished: false,
         activePages: ['home', 'about', 'projects', 'contact'],
         data: {
-            personal: data.personal || defaultData.personal!,
-            experience: data.experience || defaultData.experience!,
-            projects: data.projects || defaultData.projects!,
-            skills: data.skills || defaultData.skills!,
-            socials: data.socials || defaultData.socials!,
-            theme: data.theme || defaultData.theme!,
+            personal: mergedPersonal,
+            experience: mergedExperience,
+            projects: mergedProjects,
+            skills: mergedSkills,
+            socials: mergedSocials,
+            theme: mergedTheme,
         },
         seo: {
-            title: data.personal?.name || defaultData.personal?.name || 'Preview',
-            description: data.personal?.bio || defaultData.personal?.bio || '',
+            title: mergedPersonal.name || 'Preview',
+            description: mergedPersonal.bio || '',
         },
         views: 0,
         createdAt: now as any,

@@ -46,7 +46,7 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-5xl md:text-7xl font-bold mb-6"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6"
                         >
                             About{' '}
                             <span style={{ color: themeColors.accent }}>Me</span>
@@ -56,7 +56,7 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="space-y-6 text-lg opacity-80 leading-relaxed"
+                            className="space-y-6 text-base sm:text-lg opacity-80 leading-relaxed"
                         >
                             {(personal.longBio || personal.bio).split('\n\n').map((paragraph, index) => (
                                 <motion.p
@@ -166,8 +166,8 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                                     className="mx-auto mb-4"
                                     style={{ color: themeColors.accent }}
                                 />
-                                <div className="text-4xl font-bold mb-2">{stat.value}</div>
-                                <div className="text-sm opacity-70">{stat.label}</div>
+                                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">{stat.value}</div>
+                                <div className="text-xs sm:text-sm opacity-70">{stat.label}</div>
                             </motion.div>
                         );
                     })}
@@ -183,8 +183,8 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                         viewport={{ once: true }}
                         className="mb-16"
                     >
-                        <h2 className="text-5xl md:text-7xl font-bold mb-4">Experience</h2>
-                        <p className="text-xl opacity-70">My professional journey</p>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">Experience</h2>
+                        <p className="text-base sm:text-lg md:text-xl opacity-70">My professional journey</p>
                     </motion.div>
 
                     <div className="space-y-8">
@@ -214,8 +214,8 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
 
                                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                                     <div>
-                                        <h3 className="text-2xl font-bold mb-2">{exp.position}</h3>
-                                        <p className="text-lg opacity-70">{exp.company}</p>
+                                        <h3 className="text-xl sm:text-2xl font-bold mb-2">{exp.position}</h3>
+                                        <p className="text-base sm:text-lg opacity-70">{exp.company}</p>
                                     </div>
                                     <motion.div
                                         whileHover={{ scale: 1.1 }}
@@ -244,8 +244,8 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <h2 className="text-5xl md:text-7xl font-bold mb-4">Skills & Tools</h2>
-                    <p className="text-xl opacity-70">What I bring to the table</p>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">Skills & Tools</h2>
+                    <p className="text-base sm:text-lg md:text-xl opacity-70">What I bring to the table</p>
                 </motion.div>
 
                 <div className="space-y-12">
@@ -257,7 +257,7 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                             viewport={{ once: true }}
                             transition={{ delay: catIndex * 0.1 }}
                         >
-                            <h3 className="text-3xl font-bold mb-8" style={{ color: themeColors.accent }}>
+                            <h3 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: themeColors.accent }}>
                                 {category}
                             </h3>
 
@@ -274,7 +274,7 @@ export const DesignStudioAbout = ({ data }: DesignStudioAboutProps) => {
                                         style={{ backgroundColor: `${themeColors.accent}10` }}
                                     >
                                         <div className="flex items-center justify-between mb-4">
-                                            <span className="text-xl font-bold">{skill.name}</span>
+                                            <span className="text-lg sm:text-xl font-bold">{skill.name}</span>
                                             {skill.level && (
                                                 <span
                                                     className="px-3 py-1 rounded-full text-sm font-medium"

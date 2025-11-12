@@ -31,7 +31,7 @@ export const MinimalAbout = ({ data }: MinimalAboutProps) => {
                     className="mb-16"
                 >
                     <p className="text-sm uppercase tracking-widest opacity-40 mb-4">About</p>
-                    <h1 className="text-5xl lg:text-7xl font-light tracking-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
                         {personal.name}
                     </h1>
                 </motion.div>
@@ -63,7 +63,7 @@ export const MinimalAbout = ({ data }: MinimalAboutProps) => {
                         className={personal.photo ? 'lg:col-span-7' : 'lg:col-span-12'}
                     >
                         <div className="prose prose-lg max-w-none">
-                            <div className="text-lg leading-relaxed space-y-6 opacity-80">
+                            <div className="text-base sm:text-lg leading-relaxed space-y-6 opacity-80">
                                 {(personal.longBio || personal.bio).split('\n\n').map((paragraph, index) => (
                                     <p key={index}>{paragraph}</p>
                                 ))}
@@ -97,7 +97,7 @@ export const MinimalAbout = ({ data }: MinimalAboutProps) => {
                             className="mb-16"
                         >
                             <p className="text-sm uppercase tracking-widest opacity-40 mb-4">Career</p>
-                            <h2 className="text-4xl lg:text-6xl font-light tracking-tight">Experience</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Experience</h2>
                         </motion.div>
 
                         <div className="space-y-12">
@@ -118,8 +118,8 @@ export const MinimalAbout = ({ data }: MinimalAboutProps) => {
 
                                     {/* Content */}
                                     <div className="lg:col-span-9">
-                                        <h3 className="text-2xl font-light mb-2">{exp.position}</h3>
-                                        <p className="text-lg opacity-60 mb-4">{exp.company}</p>
+                                        <h3 className="text-xl sm:text-2xl font-light mb-2">{exp.position}</h3>
+                                        <p className="text-base sm:text-lg opacity-60 mb-4">{exp.company}</p>
                                         <p className="opacity-80 leading-relaxed">{exp.description}</p>
                                     </div>
                                 </motion.div>
@@ -139,7 +139,7 @@ export const MinimalAbout = ({ data }: MinimalAboutProps) => {
                         className="mb-16"
                     >
                         <p className="text-sm uppercase tracking-widest opacity-40 mb-4">Expertise</p>
-                        <h2 className="text-4xl lg:text-6xl font-light tracking-tight">Skills</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Skills</h2>
                     </motion.div>
 
                     <div className="space-y-16">

@@ -33,7 +33,7 @@ export const DevFolioAbout = ({ data }: DevFolioAboutProps) => {
                     <span style={{ color: themeColors.accent }}>$</span> whoami
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-bold mb-8">About Me</h1>
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-8">About Me</h1>
 
                 {/* Photo & Bio */}
                 <div className="grid md:grid-cols-3 gap-12 mb-12">
@@ -59,7 +59,7 @@ export const DevFolioAbout = ({ data }: DevFolioAboutProps) => {
                         className={personal.photo ? 'md:col-span-2' : 'md:col-span-3'}
                     >
                         <div className="prose prose-lg max-w-none">
-                            <p className="text-lg opacity-80 leading-relaxed whitespace-pre-line">
+                            <p className="text-base sm:text-lg opacity-80 leading-relaxed whitespace-pre-line">
                                 {personal.longBio || personal.bio}
                             </p>
                         </div>
@@ -94,7 +94,7 @@ export const DevFolioAbout = ({ data }: DevFolioAboutProps) => {
                         <span style={{ color: themeColors.accent }}>$</span> git log --experience
                     </div>
 
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12">Experience</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12">Experience</h2>
 
                     <div className="space-y-8">
                         {experience.map((exp, index) => (
@@ -154,7 +154,7 @@ export const DevFolioAbout = ({ data }: DevFolioAboutProps) => {
                     <span style={{ color: themeColors.accent }}>$</span> npm list --global
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-bold mb-12">Technical Skills</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12">Technical Skills</h2>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {Object.entries(groupedSkills).map(([category, categorySkills], catIndex) => (

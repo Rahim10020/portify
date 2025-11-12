@@ -48,8 +48,8 @@ export const DevFolioProjects = ({ data, slug }: DevFolioProjectsProps) => {
                     <span style={{ color: themeColors.accent }}>$</span> ls projects/ -la
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">All Projects</h1>
-                <p className="text-lg opacity-70">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">All Projects</h1>
+                <p className="text-base sm:text-lg opacity-70">
                     A collection of {projects.length} projects I've worked on
                 </p>
             </motion.div>

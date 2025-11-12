@@ -29,15 +29,15 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                         {personal.location}
                     </p>
 
-                    <h1 className="text-6xl lg:text-8xl font-light leading-tight mb-8 tracking-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-light leading-tight mb-8 tracking-tight">
                         {personal.name}
                     </h1>
 
-                    <h2 className="text-2xl lg:text-4xl font-light mb-12 opacity-60">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-12 opacity-60">
                         {personal.title}
                     </h2>
 
-                    <p className="text-lg lg:text-xl leading-relaxed max-w-2xl opacity-80 mb-12">
+                    <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl opacity-80 mb-12">
                         {personal.bio}
                     </p>
 
@@ -71,7 +71,7 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                             className="mb-16"
                         >
                             <p className="text-sm uppercase tracking-widest opacity-40 mb-4">Selected Work</p>
-                            <h2 className="text-4xl lg:text-6xl font-light tracking-tight">Featured Projects</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Featured Projects</h2>
                         </motion.div>
 
                         <div className="grid md:grid-cols-2 gap-16">
@@ -105,7 +105,7 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
 
                                     {/* Project Info */}
                                     <div className="space-y-4">
-                                        <h3 className="text-2xl font-light tracking-tight group-hover:opacity-60 transition-opacity">
+                                        <h3 className="text-xl sm:text-2xl font-light tracking-tight group-hover:opacity-60 transition-opacity">
                                             {project.title}
                                         </h3>
                                         <p className="text-sm opacity-60 leading-relaxed">
@@ -158,7 +158,7 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                         className="mb-16"
                     >
                         <p className="text-sm uppercase tracking-widest opacity-40 mb-4">Capabilities</p>
-                        <h2 className="text-4xl lg:text-6xl font-light tracking-tight">Skills</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Skills</h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">

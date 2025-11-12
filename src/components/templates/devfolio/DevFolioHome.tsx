@@ -29,7 +29,7 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                     <span style={{ color: themeColors.accent }}>$</span> cat introduction.txt
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
                     Hi, I'm{' '}
                     <span
                         className="inline-block"
@@ -39,11 +39,11 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                     </span>
                 </h1>
 
-                <h2 className="text-2xl md:text-3xl font-semibold mb-6 opacity-80">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 opacity-80">
                     {personal.title}
                 </h2>
 
-                <p className="text-lg md:text-xl opacity-70 mb-8 leading-relaxed max-w-2xl">
+                <p className="text-base sm:text-lg md:text-xl opacity-70 mb-8 leading-relaxed max-w-2xl">
                     {personal.bio}
                 </p>
 
@@ -122,7 +122,7 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                         <span style={{ color: themeColors.accent }}>$</span> cat featured_projects.json
                     </div>
 
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12">Featured Work</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12">Featured Work</h2>
 
                     <div className="space-y-12">
                         {featuredProjects.map((project, index) => (
@@ -138,7 +138,7 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                                     <div className="p-8">
                                         {/* Project Header */}
                                         <div className="flex items-start justify-between mb-4">
-                                            <h3 className="text-2xl font-bold group-hover:text-accent transition-colors">
+                                            <h3 className="text-xl sm:text-2xl font-bold group-hover:text-accent transition-colors">
                                                 {project.title}
                                             </h3>
                                             <div className="flex gap-3">

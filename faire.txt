@@ -1,4 +1,3 @@
-- dimimuer un peu la taille de la partie d'upload de l'image de profil
 - revoir bien la maniere dont l'affichage en plein ecran s'affiche 
     (c'est pas bien la. Ca prend pratiquement tout l'ecran de mon site et je 
     peux pas revenir en arriere). Si c'est possible, faire en sorte que ca ne prenne pas
@@ -6,6 +5,7 @@
     pour revenir en arriere.Donc on peut par exemple mettre un meme espace de 20
     en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche)
 
-- revoir le codage et le responsive de tout les templates(les trois), notemment mettre 
+- revoir le codage et le responsive de tous les templates(les trois), notamment mettre 
     un menu hambuger en mode mobile, et puis mettre des valeurs par defaut
     (qui vont changer au fur et a mesure que la personne avance dans la soummision du formulaire)
+    aussi dimimuer les tailles des polices en mode mobile

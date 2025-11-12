@@ -71,7 +71,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.8 }}
-                            className="text-6xl md:text-8xl font-bold leading-tight mb-6"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold leading-tight mb-6"
                         >
                             I'm{' '}
                             <span
@@ -93,7 +93,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5, duration: 0.8 }}
-                            className="text-3xl md:text-5xl font-semibold mb-8 opacity-80"
+                            className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold mb-8 opacity-80"
                         >
                             {personal.title}
                         </motion.h2>
@@ -102,7 +102,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.8 }}
-                            className="text-xl md:text-2xl opacity-70 mb-12 max-w-2xl leading-relaxed"
+                            className="text-base sm:text-lg md:text-xl lg:text-2xl opacity-70 mb-12 max-w-2xl leading-relaxed"
                         >
                             {personal.bio}
                         </motion.p>
@@ -183,8 +183,8 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <h2 className="text-5xl md:text-7xl font-bold mb-4">Featured Work</h2>
-                    <p className="text-xl opacity-70">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">Featured Work</h2>
+                    <p className="text-base sm:text-lg md:text-xl opacity-70">
                         A selection of my best projects
                     </p>
                 </motion.div>
@@ -229,7 +229,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                                 )}
 
                                 <div className="p-6" style={{ backgroundColor: `${themeColors.accent}10` }}>
-                                    <h3 className="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">
+                                    <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-accent transition-colors">
                                         {project.title}
                                     </h3>
                                     <p className="opacity-70 mb-4">{project.shortDescription}</p>
@@ -286,7 +286,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <h2 className="text-5xl md:text-7xl font-bold mb-4">What I Do</h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">What I Do</h2>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -311,7 +311,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             >
                                 {skill.name.charAt(0)}
                             </motion.div>
-                            <h3 className="text-xl font-bold mb-2">{skill.name}</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">{skill.name}</h3>
                             {skill.level && (
                                 <p className="opacity-70">{skill.level}% Mastery</p>
                             )}
@@ -348,8 +348,8 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             />
                         )}
                         <div className="p-8">
-                            <h2 className="text-4xl font-bold mb-4">{selectedProject.title}</h2>
-                            <p className="text-lg opacity-80 mb-6">{selectedProject.fullDescription || selectedProject.shortDescription}</p>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{selectedProject.title}</h2>
+                            <p className="text-base sm:text-lg opacity-80 mb-6">{selectedProject.fullDescription || selectedProject.shortDescription}</p>
                             <div className="flex flex-wrap gap-2">
                                 {selectedProject.techs.map((tech) => (
                                     <span

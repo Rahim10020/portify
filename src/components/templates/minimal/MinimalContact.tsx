@@ -38,10 +38,10 @@ export const MinimalContact = ({ data }: MinimalContactProps) => {
                     className="max-w-4xl"
                 >
                     <p className="text-sm uppercase tracking-widest opacity-40 mb-4">Contact</p>
-                    <h1 className="text-5xl lg:text-7xl font-light tracking-tight mb-8">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light tracking-tight mb-8">
                         Let's Work Together
                     </h1>
-                    <p className="text-lg lg:text-xl leading-relaxed opacity-60 max-w-2xl">
+                    <p className="text-base sm:text-lg md:text-xl leading-relaxed opacity-60 max-w-2xl">
                         I'm always interested in hearing about new projects and opportunities.
                     </p>
                 </motion.div>

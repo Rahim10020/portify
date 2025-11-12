@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Portfolio } from '@/types';
-import { Moon, Sun } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Moon, Sun, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface MinimalLayoutProps {
     portfolio: Portfolio;
@@ -13,6 +13,7 @@ interface MinimalLayoutProps {
 
 export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { data } = portfolio;
 
     const canUseDarkMode = data.theme.darkModeEnabled;
@@ -57,8 +58,8 @@ export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayou
                             {data.personal.name}
                         </a>
 
-                        {/* Navigation Links */}
-                        <div className="flex items-center gap-8">
+                        {/* Desktop Navigation Links */}
+                        <div className="hidden md:flex items-center gap-8">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
@@ -85,7 +86,60 @@ export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayou
                                 </button>
                             )}
                         </div>
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden p-2 hover:opacity-60 transition-opacity"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
                     </nav>
+
+                    {/* Mobile Menu */}
+                    <AnimatePresence>
+                        {mobileMenuOpen && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="md:hidden border-t transition-colors overflow-hidden"
+                                style={{ borderColor: themeColors.text + '20' }}
+                            >
+                                <div className="py-4 space-y-2">
+                                    {navLinks.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            className={`block px-4 py-3 text-sm uppercase tracking-wider transition-opacity ${link.active ? 'opacity-100' : 'opacity-40 hover:opacity-100'
+                                                }`}
+                                            style={{
+                                                color: themeColors.text,
+                                                fontWeight: link.active ? 600 : 400,
+                                            }}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                    {canUseDarkMode && (
+                                        <button
+                                            onClick={() => {
+                                                toggleTheme();
+                                                setMobileMenuOpen(false);
+                                            }}
+                                            className="w-full flex items-center gap-2 px-4 py-3 text-sm uppercase tracking-wider opacity-60 hover:opacity-100 transition-opacity"
+                                            style={{ color: themeColors.text }}
+                                        >
+                                            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                                            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                                        </button>
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </header>
 
