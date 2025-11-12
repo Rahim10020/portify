@@ -12,7 +12,7 @@ import { personalInfoSchema, PersonalInfoInput } from '@/lib/utils/validation';
 import { uploadProfilePhoto } from '@/lib/cloudinary/upload';
 import { ImageUploadWithPreview } from '@/components/ui/ImageUploadWithPreview';
 import { PROFESSIONAL_TITLES, BIO_SUGGESTIONS, LOCATION_SUGGESTIONS } from '@/lib/constants/suggestions';
-import { Upload, X, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Step2PersonalProps {
     data: PersonalInfoInput & { photo?: string };
