@@ -6,24 +6,26 @@ import { MinimalTemplate } from './minimal/MinimalTemplate';
 interface TemplateRendererProps {
     portfolio: Portfolio;
     page: string;
+    isMobile?: boolean;
 }
 
-export const TemplateRenderer = ({ portfolio, page }: TemplateRendererProps) => {
+export const TemplateRenderer = ({ portfolio, page, isMobile = false }: TemplateRendererProps) => {
     const { templateId } = portfolio;
 
     switch (templateId) {
         case 'devfolio':
-            return <DevFolioTemplate portfolio={portfolio} page={page} />;
+            return <DevFolioTemplate portfolio={portfolio} page={page} isMobile={isMobile} />;
         case 'designstudio':
             return (
                 <DesignStudioTemplate
                     portfolio={portfolio}
                     page={page}
                     isPreview={portfolio.id === 'preview'}
+                    isMobile={isMobile}
                 />
             );
         case 'minimal':
-            return <MinimalTemplate portfolio={portfolio} page={page} />;
+            return <MinimalTemplate portfolio={portfolio} page={page} isMobile={isMobile} />;
         default:
             return (
                 <div className="min-h-screen flex items-center justify-center">

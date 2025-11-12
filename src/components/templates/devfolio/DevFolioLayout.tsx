@@ -9,9 +9,10 @@ interface DevFolioLayoutProps {
     portfolio: Portfolio;
     currentPage: string;
     children: React.ReactNode;
+    isMobile?: boolean;
 }
 
-export const DevFolioLayout = ({ portfolio, currentPage, children }: DevFolioLayoutProps) => {
+export const DevFolioLayout = ({ portfolio, currentPage, children, isMobile = false }: DevFolioLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
         if (typeof window !== 'undefined') {
             return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
@@ -87,7 +88,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children }: DevFolioLay
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden p-2"
+                            className={`${isMobile || 'md:hidden'} p-2`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -101,7 +102,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children }: DevFolioLay
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="md:hidden border-t border-current/10 overflow-hidden"
+                                className={`${isMobile || 'md:hidden'} border-t border-current/10 overflow-hidden`}
                             >
                                 <div className="py-4 space-y-2">
                                     {navLinks.map((link) => (

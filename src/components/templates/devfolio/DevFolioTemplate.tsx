@@ -11,9 +11,10 @@ import { DevFolioContact } from './DevFolioContact';
 interface DevFolioTemplateProps {
     portfolio: Portfolio;
     page: string;
+    isMobile?: boolean;
 }
 
-export const DevFolioTemplate = ({ portfolio, page }: DevFolioTemplateProps) => {
+export const DevFolioTemplate = ({ portfolio, page, isMobile = false }: DevFolioTemplateProps) => {
     const renderPage = () => {
         // Extraire l'ID du projet si c'est une page de détail
         const isProjectDetail = page.startsWith('projects/');
@@ -36,7 +37,7 @@ export const DevFolioTemplate = ({ portfolio, page }: DevFolioTemplateProps) => 
     };
 
     return (
-        <DevFolioLayout portfolio={portfolio} currentPage={page}>
+        <DevFolioLayout portfolio={portfolio} currentPage={page} isMobile={isMobile}>
             {renderPage()}
         </DevFolioLayout>
     );

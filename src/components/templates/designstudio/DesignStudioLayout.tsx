@@ -10,6 +10,7 @@ interface DesignStudioLayoutProps {
     currentPage: string;
     children: React.ReactNode;
     isPreview?: boolean;
+    isMobile?: boolean;
 }
 
 export const DesignStudioLayout = ({
@@ -17,6 +18,7 @@ export const DesignStudioLayout = ({
     currentPage,
     children,
     isPreview = false,
+    isMobile = false,
 }: DesignStudioLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light'); // DesignStudio default light
     const [menuOpen, setMenuOpen] = useState(false);
@@ -62,7 +64,7 @@ export const DesignStudioLayout = ({
         >
             {/* Fixed Header - Mobile Only */}
             <header
-                className={`lg:hidden ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
+                className={`${isMobile || 'lg:hidden'} ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
             >
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <a href={`/u/${portfolio.slug}`} className="font-bold text-xl">

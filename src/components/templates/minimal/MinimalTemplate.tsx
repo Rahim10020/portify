@@ -10,9 +10,10 @@ import { MinimalContact } from './MinimalContact';
 interface MinimalTemplateProps {
     portfolio: Portfolio;
     page: string;
+    isMobile?: boolean;
 }
 
-export const MinimalTemplate = ({ portfolio, page }: MinimalTemplateProps) => {
+export const MinimalTemplate = ({ portfolio, page, isMobile = false }: MinimalTemplateProps) => {
     const renderPage = () => {
         switch (page) {
             case 'home':
@@ -30,7 +31,7 @@ export const MinimalTemplate = ({ portfolio, page }: MinimalTemplateProps) => {
     };
 
     return (
-        <MinimalLayout portfolio={portfolio} currentPage={page}>
+        <MinimalLayout portfolio={portfolio} currentPage={page} isMobile={isMobile}>
             {renderPage()}
         </MinimalLayout>
     );

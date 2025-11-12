@@ -11,12 +11,14 @@ interface DesignStudioTemplateProps {
     portfolio: Portfolio;
     page: string;
     isPreview?: boolean;
+    isMobile?: boolean;
 }
 
 export const DesignStudioTemplate = ({
     portfolio,
     page,
     isPreview = false,
+    isMobile = false,
 }: DesignStudioTemplateProps) => {
     const renderPage = () => {
         switch (page) {
@@ -39,6 +41,7 @@ export const DesignStudioTemplate = ({
             portfolio={portfolio}
             currentPage={page}
             isPreview={isPreview}
+            isMobile={isMobile}
         >
             {renderPage()}
         </DesignStudioLayout>

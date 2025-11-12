@@ -9,9 +9,10 @@ interface MinimalLayoutProps {
     portfolio: Portfolio;
     currentPage: string;
     children: React.ReactNode;
+    isMobile?: boolean;
 }
 
-export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayoutProps) => {
+export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = false }: MinimalLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { data } = portfolio;
@@ -89,7 +90,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayou
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden p-2 hover:opacity-60 transition-opacity"
+                            className={`${isMobile || 'md:hidden'} p-2 hover:opacity-60 transition-opacity`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             aria-label="Toggle menu"
                         >
@@ -104,7 +105,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children }: MinimalLayou
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="md:hidden border-t transition-colors overflow-hidden"
+                                className={`${isMobile || 'md:hidden'} border-t transition-colors overflow-hidden`}
                                 style={{ borderColor: themeColors.text + '20' }}
                             >
                                 <div className="py-4 space-y-2">

@@ -5,7 +5,4 @@
     pour revenir en arriere.Donc on peut par exemple mettre un meme espace de 20
     en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche)
 
-- revoir le codage et le responsive de tous les templates(les trois), notamment mettre 
-    un menu hambuger en mode mobile, et puis mettre des valeurs par defaut
-    (qui vont changer au fur et a mesure que la personne avance dans la soummision du formulaire)
-    aussi dimimuer les tailles des polices en mode mobile
+-Gestion du responsive des templates:  mettre un menu hambuger en mode mobile sur les templates

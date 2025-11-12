@@ -82,7 +82,7 @@ export const LivePreview = ({
                             }`}
                     >
                         <div className="w-full h-full overflow-auto">
-                            <TemplateRenderer portfolio={portfolio} page={currentPage} />
+                            <TemplateRenderer portfolio={portfolio} page={currentPage} isMobile={device === 'mobile'} />
                         </div>
                     </motion.div>
                 </div>
@@ -157,7 +157,7 @@ export const LivePreview = ({
                                         }`}
                                 >
                                     <div className="w-full h-full overflow-auto">
-                                        <TemplateRenderer portfolio={portfolio} page={currentPage} />
+                                        <TemplateRenderer portfolio={portfolio} page={currentPage} isMobile={device === 'mobile'} />
                                     </div>
                                 </motion.div>
                             </div>
