@@ -10,9 +10,14 @@ import { DesignStudioContact } from './DesignStudioContact';
 interface DesignStudioTemplateProps {
     portfolio: Portfolio;
     page: string;
+    isPreview?: boolean;
 }
 
-export const DesignStudioTemplate = ({ portfolio, page }: DesignStudioTemplateProps) => {
+export const DesignStudioTemplate = ({
+    portfolio,
+    page,
+    isPreview = false,
+}: DesignStudioTemplateProps) => {
     const renderPage = () => {
         switch (page) {
             case 'home':
@@ -30,7 +35,11 @@ export const DesignStudioTemplate = ({ portfolio, page }: DesignStudioTemplatePr
     };
 
     return (
-        <DesignStudioLayout portfolio={portfolio} currentPage={page}>
+        <DesignStudioLayout
+            portfolio={portfolio}
+            currentPage={page}
+            isPreview={isPreview}
+        >
             {renderPage()}
         </DesignStudioLayout>
     );

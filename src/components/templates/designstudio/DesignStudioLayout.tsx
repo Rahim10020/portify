@@ -9,9 +9,15 @@ interface DesignStudioLayoutProps {
     portfolio: Portfolio;
     currentPage: string;
     children: React.ReactNode;
+    isPreview?: boolean;
 }
 
-export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignStudioLayoutProps) => {
+export const DesignStudioLayout = ({
+    portfolio,
+    currentPage,
+    children,
+    isPreview = false,
+}: DesignStudioLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light'); // DesignStudio default light
     const [menuOpen, setMenuOpen] = useState(false);
     const { data } = portfolio;
@@ -19,9 +25,17 @@ export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignS
     const canUseDarkMode = data.theme.darkModeEnabled;
 
     useEffect(() => {
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(theme);
-    }, [theme]);
+        if (!isPreview) {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(theme);
+        }
+
+        return () => {
+            if (!isPreview) {
+                document.documentElement.classList.remove('light', 'dark');
+            }
+        };
+    }, [theme, isPreview]);
 
     const toggleTheme = () => {
         if (canUseDarkMode) {
@@ -39,7 +53,7 @@ export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignS
 
     return (
         <div
-            className="min-h-screen transition-colors duration-500"
+            className={`min-h-screen transition-colors duration-500 ${isPreview ? 'relative overflow-hidden' : ''}`}
             style={{
                 backgroundColor: themeColors.bg,
                 color: themeColors.text,
@@ -47,7 +61,9 @@ export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignS
             }}
         >
             {/* Fixed Header - Mobile Only */}
-            <header className="lg:hidden fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10">
+            <header
+                className={`lg:hidden ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
+            >
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <a href={`/u/${portfolio.slug}`} className="font-bold text-xl">
                         {data.personal.name.split(' ')[0]}
@@ -69,7 +85,9 @@ export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignS
             </header>
 
             {/* Sidebar Navigation - Desktop */}
-            <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40">
+            <aside
+                className={`hidden lg:flex ${isPreview ? 'absolute' : 'fixed'} left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40`}
+            >
                 {/* Logo */}
                 <a
                     href={`/u/${portfolio.slug}`}
@@ -148,7 +166,7 @@ export const DesignStudioLayout = ({ portfolio, currentPage, children }: DesignS
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'spring', damping: 25 }}
-                        className="lg:hidden fixed inset-0 z-40 backdrop-blur-xl"
+                        className={`lg:hidden ${isPreview ? 'absolute' : 'fixed'} inset-0 z-40 backdrop-blur-xl`}
                         style={{ backgroundColor: `${themeColors.bg}F0` }}
                     >
                         <div className="container mx-auto px-4 pt-24 pb-8">

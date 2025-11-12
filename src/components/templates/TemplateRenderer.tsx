@@ -15,7 +15,13 @@ export const TemplateRenderer = ({ portfolio, page }: TemplateRendererProps) => 
         case 'devfolio':
             return <DevFolioTemplate portfolio={portfolio} page={page} />;
         case 'designstudio':
-            return <DesignStudioTemplate portfolio={portfolio} page={page} />;
+            return (
+                <DesignStudioTemplate
+                    portfolio={portfolio}
+                    page={page}
+                    isPreview={portfolio.id === 'preview'}
+                />
+            );
         case 'minimal':
             return <MinimalTemplate portfolio={portfolio} page={page} />;
         default:
