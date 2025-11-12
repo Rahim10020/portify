@@ -62,7 +62,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children, isMobile = fa
                         </a>
 
                         {/* Desktop Nav */}
-                        <div className={`${isMobile ? 'hidden' : ''} hidden md:flex items-center gap-8`}>
+                        <div className={`${isMobile ? 'hidden' : 'hidden md:flex'} items-center gap-8`}>
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
@@ -88,7 +88,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children, isMobile = fa
 
                         {/* Mobile Menu Button */}
                         <button
-                            className={`${isMobile || 'md:hidden'} p-2`}
+                            className={`${isMobile ? 'flex' : 'md:hidden'} p-2`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -102,7 +102,7 @@ export const DevFolioLayout = ({ portfolio, currentPage, children, isMobile = fa
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className={`${isMobile || 'md:hidden'} border-t border-current/10 overflow-hidden`}
+                                className={`${isMobile ? 'block' : 'md:hidden'} border-t border-current/10 overflow-hidden`}
                             >
                                 <div className="py-4 space-y-2">
                                     {navLinks.map((link) => (

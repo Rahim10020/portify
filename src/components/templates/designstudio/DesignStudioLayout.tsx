@@ -64,7 +64,7 @@ export const DesignStudioLayout = ({
         >
             {/* Fixed Header - Mobile Only */}
             <header
-                className={`${isMobile || 'lg:hidden'} ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
+                className={`${isMobile ? 'flex' : 'lg:hidden'} ${isPreview ? 'absolute' : 'fixed'} top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-current/10`}
             >
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <a href={`/u/${portfolio.slug}`} className="font-bold text-xl">
@@ -88,7 +88,7 @@ export const DesignStudioLayout = ({
 
             {/* Sidebar Navigation - Desktop */}
             <aside
-                className={`${isMobile ? 'hidden' : ''} hidden lg:flex ${isPreview ? 'absolute' : 'fixed'} left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40`}
+                className={`${isMobile ? 'hidden' : 'hidden lg:flex'} ${isPreview ? 'absolute' : 'fixed'} left-0 top-0 h-screen w-24 flex-col items-center justify-between py-8 border-r border-current/10 z-40`}
             >
                 {/* Logo */}
                 <a

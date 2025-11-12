@@ -60,7 +60,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                         </a>
 
                         {/* Desktop Navigation Links */}
-                        <div className={`${isMobile ? 'hidden' : ''} hidden md:flex items-center gap-8`}>
+                        <div className={`${isMobile ? 'hidden' : 'hidden md:flex'} items-center gap-8`}>
                             {navLinks.map((link) => (
                                 <a
                                     key={link.href}
@@ -90,7 +90,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
 
                         {/* Mobile Menu Button */}
                         <button
-                            className={`${isMobile || 'md:hidden'} p-2 hover:opacity-60 transition-opacity`}
+                            className={`${isMobile ? 'flex' : 'md:hidden'} p-2 hover:opacity-60 transition-opacity`}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             aria-label="Toggle menu"
                         >
@@ -105,7 +105,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className={`${isMobile || 'md:hidden'} border-t transition-colors overflow-hidden`}
+                                className={`${isMobile ? 'block' : 'md:hidden'} border-t transition-colors overflow-hidden`}
                                 style={{ borderColor: themeColors.text + '20' }}
                             >
                                 <div className="py-4 space-y-2">
