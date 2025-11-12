@@ -13,3 +13,4 @@
 - Remplacer les noms des reseaux sociaux par leur icones
 - revoir le hover des boutons dans Minimal
 - revoir le responsive dans Minimal: partie projects, skills, et footer
+- voir si on peut fixer la sidebar de design studio

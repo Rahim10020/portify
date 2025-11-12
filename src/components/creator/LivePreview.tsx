@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Monitor, Smartphone, Maximize2, ArrowLeft } from 'lucide-react';
+import { X, Monitor, Smartphone, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
 import { TemplateRenderer } from '@/components/templates/TemplateRenderer';
 import { Portfolio } from '@/types';
@@ -116,22 +116,10 @@ export const LivePreview = ({
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: 'spring', damping: 25 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="absolute inset-0 bg-background overflow-hidden flex"
+                            className="absolute inset-0 bg-background overflow-hidden flex flex-col"
                         >
-                            {/* Left Sidebar */}
-                            <div className="w-16 flex items-center justify-center border-r border-border bg-card">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={handleClose}
-                                    className="p-4 hover:bg-muted rounded-lg transition-colors"
-                                >
-                                    <ArrowLeft size={32} className="text-foreground" />
-                                </motion.button>
-                            </div>
-
                             {/* Main Content */}
-                            <div className="flex-1 flex flex-col overflow-hidden">
+                            <div className="flex-1 flex flex-col overflow-hidden w-full">
                                 {/* Header */}
                                 <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-card flex-shrink-0">
                                     <div className="flex items-center gap-4">
