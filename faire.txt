@@ -3,7 +3,8 @@
     peux pas revenir en arriere). Si c'est possible, faire en sorte que ca ne prenne pas
     tout mon ecran, on peut laisser une colonne a gauche ou il y aura une fleche 
     pour revenir en arriere.Donc on peut par exemple mettre un meme espace de 20
-    en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche)
+    en haut, a droite, en bas et 40 a gauche (ou il y aura la fleche) et puis quand 
+    on passe en mode plein ecran c'est le mode desktop qu'on affiche
 
 - quand je clique sur les liens de navigations ca charge ma page mais c'est pas ce 
     que je veux. Normalement quand on est dans le preview, on ne devrais 
