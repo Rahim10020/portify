@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Portfolio } from '@/types';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface MinimalLayoutProps {
@@ -10,9 +10,18 @@ interface MinimalLayoutProps {
     currentPage: string;
     children: React.ReactNode;
     isMobile?: boolean;
+    isPreview?: boolean;
+    onNavigate?: (page: string) => void;
 }
 
-export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = false }: MinimalLayoutProps) => {
+export const MinimalLayout = ({
+    portfolio,
+    currentPage,
+    children,
+    isMobile = false,
+    isPreview = false,
+    onNavigate
+}: MinimalLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { data } = portfolio;
@@ -33,8 +42,16 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
     const navLinks = portfolio.activePages.map((page) => ({
         label: page.charAt(0).toUpperCase() + page.slice(1),
         href: `/u/${portfolio.slug}${page === 'home' ? '' : `/${page}`}`,
+        page: page,
         active: currentPage === page || (currentPage === '' && page === 'home'),
     }));
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+        if (isPreview && onNavigate) {
+            e.preventDefault();
+            onNavigate(page);
+        }
+    };
 
     const themeColors = theme === 'dark' ? data.theme.darkMode : data.theme.lightMode;
 
@@ -54,6 +71,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                         {/* Logo */}
                         <a
                             href={`/u/${portfolio.slug}`}
+                            onClick={(e) => handleLinkClick(e, 'home')}
                             className="text-xl font-medium tracking-tight hover:opacity-60 transition-opacity"
                         >
                             {data.personal.name}
@@ -65,6 +83,7 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                                 <a
                                     key={link.href}
                                     href={link.href}
+                                    onClick={(e) => handleLinkClick(e, link.page)}
                                     className={`text-sm uppercase tracking-wider transition-opacity ${link.active ? 'opacity-100' : 'opacity-40 hover:opacity-100'
                                         }`}
                                     style={{
@@ -119,7 +138,10 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                                                 color: themeColors.text,
                                                 fontWeight: link.active ? 600 : 400,
                                             }}
-                                            onClick={() => setMobileMenuOpen(false)}
+                                            onClick={(e) => {
+                                                handleLinkClick(e, link.page);
+                                                setMobileMenuOpen(false);
+                                            }}
                                         >
                                             {link.label}
                                         </a>
@@ -150,19 +172,20 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
             {/* Footer */}
             <footer className="border-t mt-32 transition-colors" style={{ borderColor: themeColors.text + '20' }}>
                 <div className="container mx-auto px-4 lg:px-8 py-8">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <p className="text-sm opacity-40">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+                        <p className="text-xs sm:text-sm opacity-40 text-center sm:text-left">
                             © {new Date().getFullYear()} {data.personal.name}
                         </p>
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-4 sm:gap-6">
                             {data.socials.github && (
                                 <a
                                     href={data.socials.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-40 hover:opacity-100 transition-opacity uppercase tracking-wider"
+                                    className="opacity-40 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="GitHub"
                                 >
-                                    GitHub
+                                    <Github size={20} />
                                 </a>
                             )}
                             {data.socials.linkedin && (
@@ -170,9 +193,10 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                                     href={data.socials.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-40 hover:opacity-100 transition-opacity uppercase tracking-wider"
+                                    className="opacity-40 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="LinkedIn"
                                 >
-                                    LinkedIn
+                                    <Linkedin size={20} />
                                 </a>
                             )}
                             {data.socials.twitter && (
@@ -180,9 +204,10 @@ export const MinimalLayout = ({ portfolio, currentPage, children, isMobile = fal
                                     href={data.socials.twitter}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-40 hover:opacity-100 transition-opacity uppercase tracking-wider"
+                                    className="opacity-40 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="Twitter"
                                 >
-                                    Twitter
+                                    <Twitter size={20} />
                                 </a>
                             )}
                         </div>

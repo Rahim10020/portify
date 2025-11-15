@@ -7,25 +7,34 @@ interface TemplateRendererProps {
     portfolio: Portfolio;
     page: string;
     isMobile?: boolean;
+    isPreview?: boolean;
+    onNavigate?: (page: string) => void;
 }
 
-export const TemplateRenderer = ({ portfolio, page, isMobile = false }: TemplateRendererProps) => {
+export const TemplateRenderer = ({
+    portfolio,
+    page,
+    isMobile = false,
+    isPreview = false,
+    onNavigate
+}: TemplateRendererProps) => {
     const { templateId } = portfolio;
 
     switch (templateId) {
         case 'devfolio':
-            return <DevFolioTemplate portfolio={portfolio} page={page} isMobile={isMobile} />;
+            return <DevFolioTemplate portfolio={portfolio} page={page} isMobile={isMobile} isPreview={isPreview} onNavigate={onNavigate} />;
         case 'designstudio':
             return (
                 <DesignStudioTemplate
                     portfolio={portfolio}
                     page={page}
-                    isPreview={portfolio.id === 'preview'}
+                    isPreview={isPreview}
                     isMobile={isMobile}
+                    onNavigate={onNavigate}
                 />
             );
         case 'minimal':
-            return <MinimalTemplate portfolio={portfolio} page={page} isMobile={isMobile} />;
+            return <MinimalTemplate portfolio={portfolio} page={page} isMobile={isMobile} isPreview={isPreview} onNavigate={onNavigate} />;
         default:
             return (
                 <div className="min-h-screen flex items-center justify-center">

@@ -106,12 +106,16 @@ export const MinimalContact = ({ data }: MinimalContactProps) => {
 
                                 <motion.button
                                     type="submit"
-                                    whileHover={{ x: 5 }}
-                                    className="inline-flex items-center gap-2 px-8 py-4 border hover:bg-current hover:text-white transition-colors"
+                                    whileHover={{ scale: 1.02, x: 5 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="inline-flex items-center gap-2 px-8 py-4 border hover:bg-current hover:text-white hover:shadow-lg transition-all group relative overflow-hidden"
                                     style={{ borderColor: themeColors.text }}
                                 >
-                                    <Send size={18} />
-                                    <span className="uppercase text-sm tracking-wider">Send Message</span>
+                                    <motion.span
+                                        className="absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity"
+                                    />
+                                    <Send size={18} className="group-hover:rotate-12 transition-transform relative z-10" />
+                                    <span className="uppercase text-sm tracking-wider relative z-10">Send Message</span>
                                 </motion.button>
                             </form>
                         </motion.div>

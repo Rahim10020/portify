@@ -12,9 +12,17 @@ interface DevFolioTemplateProps {
     portfolio: Portfolio;
     page: string;
     isMobile?: boolean;
+    isPreview?: boolean;
+    onNavigate?: (page: string) => void;
 }
 
-export const DevFolioTemplate = ({ portfolio, page, isMobile = false }: DevFolioTemplateProps) => {
+export const DevFolioTemplate = ({
+    portfolio,
+    page,
+    isMobile = false,
+    isPreview = false,
+    onNavigate
+}: DevFolioTemplateProps) => {
     const renderPage = () => {
         // Extraire l'ID du projet si c'est une page de détail
         const isProjectDetail = page.startsWith('projects/');
@@ -37,7 +45,7 @@ export const DevFolioTemplate = ({ portfolio, page, isMobile = false }: DevFolio
     };
 
     return (
-        <DevFolioLayout portfolio={portfolio} currentPage={page} isMobile={isMobile}>
+        <DevFolioLayout portfolio={portfolio} currentPage={page} isMobile={isMobile} isPreview={isPreview} onNavigate={onNavigate}>
             {renderPage()}
         </DevFolioLayout>
     );

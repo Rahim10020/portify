@@ -12,6 +12,7 @@ interface DesignStudioTemplateProps {
     page: string;
     isPreview?: boolean;
     isMobile?: boolean;
+    onNavigate?: (page: string) => void;
 }
 
 export const DesignStudioTemplate = ({
@@ -19,6 +20,7 @@ export const DesignStudioTemplate = ({
     page,
     isPreview = false,
     isMobile = false,
+    onNavigate
 }: DesignStudioTemplateProps) => {
     const renderPage = () => {
         switch (page) {
@@ -42,6 +44,7 @@ export const DesignStudioTemplate = ({
             currentPage={page}
             isPreview={isPreview}
             isMobile={isMobile}
+            onNavigate={onNavigate}
         >
             {renderPage()}
         </DesignStudioLayout>

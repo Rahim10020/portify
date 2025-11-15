@@ -42,20 +42,27 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                     </p>
 
                     <div className="flex gap-4">
-                        <a
+                        <motion.a
                             href={`/u/${slug}/projects`}
-                            className="inline-flex items-center gap-2 px-8 py-3 border transition-colors hover:bg-current hover:text-white group"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 px-8 py-3 border transition-all hover:bg-current hover:text-white hover:shadow-lg group relative overflow-hidden"
                             style={{ borderColor: themeColors.text }}
                         >
-                            <span className="uppercase text-sm tracking-wider">View Work</span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a
+                            <motion.span
+                                className="absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity"
+                            />
+                            <span className="uppercase text-sm tracking-wider relative z-10">View Work</span>
+                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform relative z-10" />
+                        </motion.a>
+                        <motion.a
                             href={`/u/${slug}/contact`}
-                            className="inline-flex items-center gap-2 px-8 py-3 uppercase text-sm tracking-wider opacity-60 hover:opacity-100 transition-opacity"
+                            whileHover={{ scale: 1.02, x: 5 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 px-8 py-3 uppercase text-sm tracking-wider opacity-60 hover:opacity-100 transition-all"
                         >
                             Contact
-                        </a>
+                        </motion.a>
                     </div>
                 </motion.div>
             </section>
@@ -74,7 +81,7 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Featured Projects</h2>
                         </motion.div>
 
-                        <div className="grid md:grid-cols-2 gap-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
                             {featuredProjects.map((project, index) => (
                                 <motion.a
                                     key={project.id}
@@ -161,7 +168,7 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight">Skills</h2>
                     </motion.div>
 
-                    <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                         {skills.slice(0, 12).map((skill, index) => (
                             <motion.div
                                 key={skill.name}
@@ -169,10 +176,10 @@ export const MinimalHome = ({ data, slug }: MinimalHomeProps) => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.05 }}
-                                className="border-l-2 pl-4 transition-colors"
+                                className="border-l-2 pl-4 transition-colors hover:border-opacity-100"
                                 style={{ borderColor: themeColors.text + '40' }}
                             >
-                                <h4 className="text-lg font-light mb-2">{skill.name}</h4>
+                                <h4 className="text-base sm:text-lg font-light mb-2">{skill.name}</h4>
                                 <p className="text-xs uppercase tracking-wider opacity-40">{skill.category}</p>
                             </motion.div>
                         ))}

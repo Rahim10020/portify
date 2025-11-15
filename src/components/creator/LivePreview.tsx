@@ -22,6 +22,7 @@ export const LivePreview = ({
 }: LivePreviewProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
+    const [previewPage, setPreviewPage] = useState(currentPage);
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -31,6 +32,10 @@ export const LivePreview = ({
     const handleClose = () => {
         setIsOpen(false);
         onFullscreenChange?.(false);
+    };
+
+    const handleNavigate = (page: string) => {
+        setPreviewPage(page);
     };
 
     return (
@@ -94,7 +99,13 @@ export const LivePreview = ({
                             }`}
                     >
                         <div className="w-full h-full overflow-auto">
-                            <TemplateRenderer portfolio={portfolio} page={currentPage} isMobile={device === 'mobile'} />
+                            <TemplateRenderer
+                                portfolio={portfolio}
+                                page={previewPage}
+                                isMobile={device === 'mobile'}
+                                isPreview={true}
+                                onNavigate={handleNavigate}
+                            />
                         </div>
                     </motion.div>
                 </div>
@@ -171,7 +182,13 @@ export const LivePreview = ({
                                             }`}
                                     >
                                         <div className="w-full h-full overflow-auto">
-                                            <TemplateRenderer portfolio={portfolio} page={currentPage} isMobile={device === 'mobile'} />
+                                            <TemplateRenderer
+                                                portfolio={portfolio}
+                                                page={previewPage}
+                                                isMobile={device === 'mobile'}
+                                                isPreview={true}
+                                                onNavigate={handleNavigate}
+                                            />
                                         </div>
                                     </motion.div>
                                 </div>

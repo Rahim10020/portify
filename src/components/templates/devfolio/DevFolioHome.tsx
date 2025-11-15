@@ -81,7 +81,7 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                     <span style={{ color: themeColors.accent }}>$</span> ls skills/
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {skills.slice(0, 8).map((skill, index) => (
                         <motion.div
                             key={skill.name}
@@ -90,9 +90,9 @@ export const DevFolioHome = ({ data, slug }: DevFolioHomeProps) => {
                             transition={{ delay: 0.3 + index * 0.05 }}
                             className="p-4 rounded-lg border border-current/10 hover:border-current/30 transition-all hover:scale-105"
                         >
-                            <div className="flex items-center gap-2 mb-2">
-                                <Code2 size={16} style={{ color: themeColors.accent }} />
-                                <span className="font-medium">{skill.name}</span>
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                <Code2 size={16} style={{ color: themeColors.accent }} className="flex-shrink-0" />
+                                <span className="font-medium text-sm sm:text-base">{skill.name}</span>
                             </div>
                             {skill.level && (
                                 <div className="w-full h-1 bg-current/10 rounded-full overflow-hidden">
