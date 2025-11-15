@@ -29,7 +29,6 @@ export default function AdminNewsletterPage() {
             const data = await getAllNewsletterSubscribers();
             setSubscribers(data);
         } catch (error) {
-            console.error('Error loading subscribers:', error);
             toast.error('Failed to load subscribers');
         } finally {
             setLoading(false);

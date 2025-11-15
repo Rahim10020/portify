@@ -19,6 +19,7 @@ import { createPortfolio } from '@/lib/firebase/firestore';
 import { ROUTES } from '@/lib/constants/routes';
 import { slugify } from '@/lib/utils/slugify';
 import { createPreviewPortfolio } from '@/lib/utils/preview';
+import { Experience, Project, Skill, Socials, Theme, PersonalInfo } from '@/types';
 
 const TOTAL_STEPS = 8;
 
@@ -39,11 +40,11 @@ function CreateContent() {
         longBio: '',
         location: '',
     });
-    const [experienceData, setExperienceData] = useState<any[]>([]);
-    const [projectsData, setProjectsData] = useState<any[]>([]);
-    const [skillsData, setSkillsData] = useState<any[]>([]);
-    const [socialsData, setSocialsData] = useState<any>({});
-    const [themeData, setThemeData] = useState<any>({
+    const [experienceData, setExperienceData] = useState<Experience[]>([]);
+    const [projectsData, setProjectsData] = useState<Project[]>([]);
+    const [skillsData, setSkillsData] = useState<Skill[]>([]);
+    const [socialsData, setSocialsData] = useState<Socials>({});
+    const [themeData, setThemeData] = useState<Theme>({
         darkModeEnabled: false,
         primaryColor: '#3B82F6',
         font: 'inter',
@@ -65,7 +66,7 @@ function CreateContent() {
         setTemplateId(id);
     };
 
-    const handlePersonalUpdate = (data: any) => {
+    const handlePersonalUpdate = (data: PersonalInfo) => {
         setPersonalData(data);
         // Auto-generate slug from name if not set
         if (!slug && data.name) {
@@ -100,7 +101,7 @@ function CreateContent() {
                 views: 0,
             };
 
-            await createPortfolio(portfolioData as any);
+            await createPortfolio(portfolioData);
 
             toast.success(
                 isPublished ? 'Portfolio published successfully!' : 'Portfolio saved as draft!'

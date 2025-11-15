@@ -23,7 +23,7 @@ export default function PricingPage() {
                 const fetchedPlans = await getAllPlans();
                 setPlans(fetchedPlans);
             } catch (error) {
-                console.error('Failed to load plans:', error);
+                // Error already logged in firestore service
             } finally {
                 setLoading(false);
             }

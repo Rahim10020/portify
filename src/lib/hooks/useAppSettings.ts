@@ -23,14 +23,14 @@ export const useAppSettings = () => {
                             newTemplatesNotification: true,
                         },
                         plans: [],
-                        updatedAt: new Date() as any,
+                        updatedAt: new Date() as unknown as Timestamp,
                     };
                     setSettings(defaultSettings);
                 } else {
                     setSettings(data);
                 }
             } catch (error) {
-                console.error('Error fetching app settings:', error);
+                // Error already logged in firestore service
             } finally {
                 setLoading(false);
             }

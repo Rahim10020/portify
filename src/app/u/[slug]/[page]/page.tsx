@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { getPortfolioBySlug } from '@/lib/firebase/portfolios';
+import { getPortfolioBySlug } from '@/lib/firebase/firestore';
 import { TemplateRenderer } from '@/components/templates/TemplateRenderer';
 import { Portfolio } from '@/types';
 import { Loader2 } from 'lucide-react';
@@ -40,7 +40,6 @@ export default function PublicPortfolioPageRoute() {
 
                 setPortfolio(data);
             } catch (err) {
-                console.error('Error loading portfolio:', err);
                 setError('Failed to load portfolio');
             } finally {
                 setLoading(false);

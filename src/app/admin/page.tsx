@@ -32,7 +32,7 @@ export default function AdminPage() {
                     totalViews: views,
                 });
             } catch (error) {
-                console.error('Failed to fetch stats:', error);
+                // Error already logged in firestore service
             }
         };
 

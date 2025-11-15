@@ -15,7 +15,7 @@ Create professional portfolios in minutes. No coding required.
 
 ## 📦 Tech Stack
 
-- **Frontend**: Next.js 14, React, TypeScript
+- **Frontend**: Next.js 16, React 19, TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Database**: Firebase Firestore
