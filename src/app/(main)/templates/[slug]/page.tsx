@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { getTemplateBySlug } from '@/lib/constants/templates';
 import { ROUTES } from '@/lib/constants/routes';
 import { ArrowLeft } from 'lucide-react';
+import { TemplatePreview } from '@/components/templates/TemplatePreview';
 
 export default async function TemplatePreviewPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -43,21 +44,7 @@ export default async function TemplatePreviewPage({ params }: { params: Promise<
 
             {/* Preview Area */}
             <div className="container mx-auto px-4 py-8">
-                <div className="rounded-xl border border-border bg-muted overflow-hidden">
-                    <div className="aspect-video flex items-center justify-center">
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-foreground/20 mb-4">
-                                {template.name}
-                            </div>
-                            <div className="text-foreground/40 mb-6">
-                                Template preview will be rendered here
-                            </div>
-                            <Link href={ROUTES.CREATE}>
-                                <Button>Start Using Template</Button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                <TemplatePreview templateId={template.id} templateName={template.name} />
 
                 {/* Template Details */}
                 <div className="mt-8 grid md:grid-cols-2 gap-8">

@@ -101,21 +101,69 @@ export const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="mt-12 flex items-center justify-center gap-8 text-sm text-foreground/60"
+                        className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-foreground/60"
                     >
                         <div className="flex items-center gap-2">
                             <div className="flex -space-x-2">
                                 {[1, 2, 3, 4].map((i) => (
                                     <div
                                         key={i}
-                                        className="w-8 h-8 rounded-full bg-muted border-2 border-background"
-                                    />
+                                        className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 border-2 border-background flex items-center justify-center"
+                                    >
+                                        <span className="text-xs font-bold text-primary">{i}</span>
+                                    </div>
                                 ))}
                             </div>
-                            <span>500+ portfolios created</span>
+                            <span className="font-medium">500+ portfolios created</span>
                         </div>
                         <div className="hidden sm:block h-4 w-px bg-border" />
-                        <span className="hidden sm:inline">No credit card required</span>
+                        <span className="hidden sm:inline">✓ No credit card required</span>
+                        <div className="hidden sm:block h-4 w-px bg-border" />
+                        <span className="hidden sm:inline">✓ Free forever plan</span>
+                    </motion.div>
+
+                    {/* Visual Preview */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.5 }}
+                        className="mt-16 relative"
+                    >
+                        <div className="relative max-w-5xl mx-auto">
+                            {/* Glow effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-3xl -z-10" />
+
+                            {/* Browser mockup */}
+                            <div className="bg-muted/50 backdrop-blur-sm rounded-xl border border-border shadow-2xl overflow-hidden">
+                                {/* Browser header */}
+                                <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/80">
+                                    <div className="flex gap-2">
+                                        <div className="w-3 h-3 rounded-full bg-red-500/70" />
+                                        <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                                        <div className="w-3 h-3 rounded-full bg-green-500/70" />
+                                    </div>
+                                    <div className="flex-1 ml-4">
+                                        <div className="h-6 bg-background/50 rounded px-3 flex items-center text-xs text-foreground/40">
+                                            portify.app/yourname
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Content preview */}
+                                <div className="p-8 bg-gradient-to-br from-background via-background to-muted/30">
+                                    <div className="space-y-4">
+                                        <div className="h-8 w-48 bg-primary/20 rounded animate-pulse" />
+                                        <div className="h-4 w-full bg-muted rounded animate-pulse" />
+                                        <div className="h-4 w-3/4 bg-muted rounded animate-pulse" />
+                                        <div className="grid grid-cols-3 gap-4 mt-8">
+                                            {[1, 2, 3].map((i) => (
+                                                <div key={i} className="aspect-video bg-muted/50 rounded-lg border border-border animate-pulse" />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </div>

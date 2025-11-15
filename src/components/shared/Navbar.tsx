@@ -53,7 +53,10 @@ export const Navbar = () => {
 
     const navLinks = [
         { href: ROUTES.TEMPLATES, label: 'Templates' },
+        { href: ROUTES.SHOWCASE, label: 'Showcase' },
+        { href: ROUTES.RESOURCES, label: 'Resources' },
         ...(features?.pricingPageVisible ? [{ href: ROUTES.PRICING, label: 'Pricing' }] : []),
+        { href: ROUTES.CONTACT, label: 'Contact' },
     ];
 
     return (
