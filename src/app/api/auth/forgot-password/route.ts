@@ -21,8 +21,6 @@ export async function POST(request: NextRequest) {
             { status: 200 }
         );
     } catch (error: any) {
-        console.error('Forgot password error:', error);
-
         // Handle specific Firebase auth errors
         if (error.code === 'auth/user-not-found') {
             return NextResponse.json(

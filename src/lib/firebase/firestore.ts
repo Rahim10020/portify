@@ -19,13 +19,13 @@ import { Portfolio, User, AppSettings, Plan } from '@/types';
 import { logger } from '@/lib/utils/logger';
 
 // Helper pour convertir les timestamps Firestore
-function convertTimestamp(data: DocumentData): any {
-    const converted: any = { ...data };
+function convertTimestamp(data: DocumentData): DocumentData {
+    const converted: DocumentData = { ...data };
     Object.keys(converted).forEach((key) => {
         if (converted[key] instanceof Timestamp) {
             converted[key] = converted[key];
         } else if (typeof converted[key] === 'object' && converted[key] !== null) {
-            converted[key] = convertTimestamp(converted[key]);
+            converted[key] = convertTimestamp(converted[key] as DocumentData);
         }
     });
     return converted;

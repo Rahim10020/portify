@@ -31,7 +31,7 @@ export const usePortfolio = () => {
             const data = await getUserPortfolios(user.id);
             setPortfolios(data);
         } catch (error) {
-            console.error('Error fetching portfolios:', error);
+            // Error already logged in firestore service
         } finally {
             setLoading(false);
         }
@@ -45,7 +45,7 @@ export const usePortfolio = () => {
             await fetchPortfolios();
             return id;
         } catch (error) {
-            console.error('Error creating portfolio:', error);
+            // Error already logged in firestore service
             throw error;
         }
     };
@@ -55,7 +55,7 @@ export const usePortfolio = () => {
             await updatePortfolioFirestore(id, data);
             await fetchPortfolios();
         } catch (error) {
-            console.error('Error updating portfolio:', error);
+            // Error already logged in firestore service
             throw error;
         }
     };
@@ -65,7 +65,7 @@ export const usePortfolio = () => {
             await deletePortfolioFirestore(id);
             await fetchPortfolios();
         } catch (error) {
-            console.error('Error deleting portfolio:', error);
+            // Error already logged in firestore service
             throw error;
         }
     };
@@ -74,7 +74,7 @@ export const usePortfolio = () => {
         try {
             return await getPortfolioById(id);
         } catch (error) {
-            console.error('Error getting portfolio:', error);
+            // Error already logged in firestore service
             throw error;
         }
     };

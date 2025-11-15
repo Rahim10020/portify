@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/useAuth';
-import { getPortfolioById, updatePortfolio } from '@/lib/firebase/portfolios';
+import { getPortfolioById, updatePortfolio } from '@/lib/firebase/firestore';
 import { useToast } from '@/components/ui/Toast';
 import { ROUTES } from '@/lib/constants/routes';
 import { Portfolio } from '@/types';
@@ -18,6 +18,7 @@ import { Step8Publish } from '@/components/creator/steps/Step8Publish';
 import { ProgressBar } from '@/components/creator/ProgressBar';
 import { LivePreview } from '@/components/creator/LivePreview';
 import { Loader2 } from 'lucide-react';
+import { Experience, Project, Skill, Socials, Theme, PersonalInfo } from '@/types';
 
 export default function EditPortfolioPage() {
     const params = useParams();
@@ -34,12 +35,12 @@ export default function EditPortfolioPage() {
 
     // Form data state
     const [templateId, setTemplateId] = useState('');
-    const [personalData, setPersonalData] = useState<any>({});
-    const [experienceData, setExperienceData] = useState<any[]>([]);
-    const [projectsData, setProjectsData] = useState<any[]>([]);
-    const [skillsData, setSkillsData] = useState<any[]>([]);
-    const [socialsData, setSocialsData] = useState<any>({});
-    const [themeData, setThemeData] = useState<any>({});
+    const [personalData, setPersonalData] = useState<PersonalInfo>({} as PersonalInfo);
+    const [experienceData, setExperienceData] = useState<Experience[]>([]);
+    const [projectsData, setProjectsData] = useState<Project[]>([]);
+    const [skillsData, setSkillsData] = useState<Skill[]>([]);
+    const [socialsData, setSocialsData] = useState<Socials>({});
+    const [themeData, setThemeData] = useState<Theme>({} as Theme);
     const [slug, setSlug] = useState('');
     const [isPublished, setIsPublished] = useState(true);
 
@@ -77,7 +78,6 @@ export default function EditPortfolioPage() {
                 setSlug(data.slug);
                 setIsPublished(data.isPublished);
             } catch (error) {
-                console.error('Error loading portfolio:', error);
                 toast.error('Failed to load portfolio');
                 router.push(ROUTES.DASHBOARD);
             } finally {
@@ -92,7 +92,7 @@ export default function EditPortfolioPage() {
         setTemplateId(id);
     };
 
-    const handlePersonalUpdate = (data: any) => {
+    const handlePersonalUpdate = (data: PersonalInfo) => {
         setPersonalData(data);
     };
 
@@ -125,7 +125,6 @@ export default function EditPortfolioPage() {
             toast.success('Portfolio updated successfully!');
             router.push(ROUTES.DASHBOARD);
         } catch (error: any) {
-            console.error('Error updating portfolio:', error);
             toast.error(error.message || 'Failed to update portfolio');
         } finally {
             setSaving(false);
