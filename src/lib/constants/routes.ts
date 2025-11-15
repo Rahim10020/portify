@@ -13,6 +13,10 @@ export const ROUTES = {
     SETTINGS: '/settings',
     PRICING: '/pricing',
 
+    SHOWCASE: '/showcase',
+    RESOURCES: '/resources',
+    CONTACT: '/contact',
+
     ADMIN: '/admin',
     ADMIN_SETTINGS: '/admin/settings',
     ADMIN_USERS: '/admin/users',
