@@ -1,6 +1,3 @@
-- revoir bien la maniere dont l'affichage en plein ecran s'affiche 
-
-
 - quand je clique sur les liens de navigations ca charge ma page mais c'est pas ce 
     que je veux. Normalement quand on est dans le preview, on ne devrais 
     pas charger ma page (je veux dire mon app web avant de voir les modifications) 
