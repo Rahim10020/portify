@@ -11,9 +11,17 @@ interface MinimalTemplateProps {
     portfolio: Portfolio;
     page: string;
     isMobile?: boolean;
+    isPreview?: boolean;
+    onNavigate?: (page: string) => void;
 }
 
-export const MinimalTemplate = ({ portfolio, page, isMobile = false }: MinimalTemplateProps) => {
+export const MinimalTemplate = ({
+    portfolio,
+    page,
+    isMobile = false,
+    isPreview = false,
+    onNavigate
+}: MinimalTemplateProps) => {
     const renderPage = () => {
         switch (page) {
             case 'home':
@@ -31,7 +39,7 @@ export const MinimalTemplate = ({ portfolio, page, isMobile = false }: MinimalTe
     };
 
     return (
-        <MinimalLayout portfolio={portfolio} currentPage={page} isMobile={isMobile}>
+        <MinimalLayout portfolio={portfolio} currentPage={page} isMobile={isMobile} isPreview={isPreview} onNavigate={onNavigate}>
             {renderPage()}
         </MinimalLayout>
     );

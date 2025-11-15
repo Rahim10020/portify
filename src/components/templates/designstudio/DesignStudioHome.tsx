@@ -190,7 +190,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                 </motion.div>
 
                 {/* Masonry Layout */}
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
                     {featuredProjects.map((project, index) => (
                         <motion.div
                             key={project.id}
@@ -289,7 +289,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">What I Do</h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                     {skills.slice(0, 8).map((skill, index) => (
                         <motion.div
                             key={skill.name}
@@ -298,7 +298,7 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ scale: 1.05, rotate: 2 }}
-                            className="p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl transition-all duration-500"
+                            className="p-6 md:p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl transition-all duration-500"
                             style={{ backgroundColor: `${themeColors.accent}10` }}
                         >
                             <motion.div
@@ -306,14 +306,14 @@ export const DesignStudioHome = ({ data, slug }: DesignStudioHomeProps) => {
                                 whileInView={{ scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 + 0.2, type: 'spring' }}
-                                className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center text-2xl font-bold"
+                                className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold"
                                 style={{ backgroundColor: themeColors.accent, color: themeColors.bg }}
                             >
                                 {skill.name.charAt(0)}
                             </motion.div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2">{skill.name}</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">{skill.name}</h3>
                             {skill.level && (
-                                <p className="opacity-70">{skill.level}% Mastery</p>
+                                <p className="opacity-70 text-sm md:text-base">{skill.level}% Mastery</p>
                             )}
                         </motion.div>
                     ))}

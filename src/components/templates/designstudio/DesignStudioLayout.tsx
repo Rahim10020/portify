@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Portfolio } from '@/types';
-import { Moon, Sun, X, Sparkles } from 'lucide-react';
+import { Moon, Sun, X, Sparkles, Linkedin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface DesignStudioLayoutProps {
@@ -11,7 +11,27 @@ interface DesignStudioLayoutProps {
     children: React.ReactNode;
     isPreview?: boolean;
     isMobile?: boolean;
+    onNavigate?: (page: string) => void;
 }
+
+// Custom SVG Icons for Dribbble and Behance
+const DribbbleIcon = ({ size = 20 }: { size?: number }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94" />
+        <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32" />
+        <path d="M8.56 2.75c4.37 6 6 9.42 6 17.72" />
+    </svg>
+);
+
+const BehanceIcon = ({ size = 20 }: { size?: number }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 8h6.5a2.5 2.5 0 1 1 0 5H3z" />
+        <path d="M3 13h6.5a2.5 2.5 0 1 1 0 5H3z" />
+        <circle cx="17.5" cy="13.5" r="3.5" />
+        <path d="M14 7h7" />
+    </svg>
+);
 
 export const DesignStudioLayout = ({
     portfolio,
@@ -19,6 +39,7 @@ export const DesignStudioLayout = ({
     children,
     isPreview = false,
     isMobile = false,
+    onNavigate
 }: DesignStudioLayoutProps) => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light'); // DesignStudio default light
     const [menuOpen, setMenuOpen] = useState(false);
@@ -48,8 +69,16 @@ export const DesignStudioLayout = ({
     const navLinks = portfolio.activePages.map((page) => ({
         label: page.charAt(0).toUpperCase() + page.slice(1),
         href: `/u/${portfolio.slug}${page === 'home' ? '' : `/${page}`}`,
+        page: page,
         active: currentPage === page || (currentPage === '' && page === 'home'),
     }));
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+        if (isPreview && onNavigate) {
+            e.preventDefault();
+            onNavigate(page);
+        }
+    };
 
     const themeColors = theme === 'dark' ? data.theme.darkMode : data.theme.lightMode;
 
@@ -68,8 +97,9 @@ export const DesignStudioLayout = ({
                 style={{ backgroundColor: `${themeColors.bg}E0` }}
             >
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between w-full">
-                    <a 
-                        href={`/u/${portfolio.slug}`} 
+                    <a
+                        href={`/u/${portfolio.slug}`}
+                        onClick={(e) => handleLinkClick(e, 'home')}
                         className="font-bold text-xl"
                         style={{ color: themeColors.text }}
                     >
@@ -100,6 +130,7 @@ export const DesignStudioLayout = ({
                 {/* Logo */}
                 <a
                     href={`/u/${portfolio.slug}`}
+                    onClick={(e) => handleLinkClick(e, 'home')}
                     className="group relative"
                 >
                     <motion.div
@@ -122,6 +153,7 @@ export const DesignStudioLayout = ({
                         <motion.a
                             key={link.href}
                             href={link.href}
+                            onClick={(e) => handleLinkClick(e, link.page)}
                             whileHover={{ scale: 1.1, x: 5 }}
                             className="relative group"
                         >
@@ -218,11 +250,14 @@ export const DesignStudioLayout = ({
                                             transition={{ delay: index * 0.1 }}
                                             className={`block text-2xl font-bold py-4 px-4 rounded-lg transition-all ${link.active ? '' : 'opacity-70 hover:opacity-100'
                                                 }`}
-                                            style={{ 
+                                            style={{
                                                 color: link.active ? themeColors.accent : themeColors.text,
                                                 backgroundColor: link.active ? `${themeColors.accent}10` : 'transparent'
                                             }}
-                                            onClick={() => setMenuOpen(false)}
+                                            onClick={(e) => {
+                                                handleLinkClick(e, link.page);
+                                                setMenuOpen(false);
+                                            }}
                                         >
                                             {link.label}
                                         </motion.a>
@@ -267,9 +302,10 @@ export const DesignStudioLayout = ({
                                     href={data.socials.dribbble}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-60 hover:opacity-100 transition-opacity hover:scale-110"
+                                    className="opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="Dribbble"
                                 >
-                                    Dribbble
+                                    <DribbbleIcon size={20} />
                                 </a>
                             )}
                             {data.socials.behance && (
@@ -277,9 +313,10 @@ export const DesignStudioLayout = ({
                                     href={data.socials.behance}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-60 hover:opacity-100 transition-opacity hover:scale-110"
+                                    className="opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="Behance"
                                 >
-                                    Behance
+                                    <BehanceIcon size={20} />
                                 </a>
                             )}
                             {data.socials.linkedin && (
@@ -287,9 +324,10 @@ export const DesignStudioLayout = ({
                                     href={data.socials.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm opacity-60 hover:opacity-100 transition-opacity hover:scale-110"
+                                    className="opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                                    aria-label="LinkedIn"
                                 >
-                                    LinkedIn
+                                    <Linkedin size={20} />
                                 </a>
                             )}
                         </div>
