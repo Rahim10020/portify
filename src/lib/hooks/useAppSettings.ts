@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAppSettings } from '@/lib/firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
 import { AppSettings } from '@/types';
 import { DEFAULT_LIMITS } from '@/lib/constants/plans';
 
@@ -23,7 +24,7 @@ export const useAppSettings = () => {
                             newTemplatesNotification: true,
                         },
                         plans: [],
-                        updatedAt: new Date() as unknown as Timestamp,
+                        updatedAt: Timestamp.now(),
                     };
                     setSettings(defaultSettings);
                 } else {
