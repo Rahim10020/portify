@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { ROUTES } from '@/lib/constants/routes';
 
 interface User {
-    uid: string;
+    id: string;
     email: string;
     displayName: string;
     photoURL?: string;
@@ -154,7 +154,7 @@ export default function AdminUsersPage() {
                             </thead>
                             <tbody>
                                 {filteredUsers.map((user) => (
-                                    <tr key={user.uid} className="border-b border-border hover:bg-muted/30">
+                                    <tr key={user.id} className="border-b border-border hover:bg-muted/30">
                                         <td className="py-3 px-4">
                                             <div className="flex items-center gap-3">
                                                 {user.photoURL ? (
@@ -208,7 +208,7 @@ export default function AdminUsersPage() {
                                         </td>
                                         <td className="py-3 px-4">
                                             <div className="flex items-center justify-end gap-2">
-                                                <Link href={`${ROUTES.DASHBOARD}?userId=${user.uid}`}>
+                                                <Link href={`${ROUTES.DASHBOARD}?userId=${user.id}`}>
                                                     <Button variant="ghost" size="sm">
                                                         <Eye size={16} />
                                                     </Button>
@@ -216,7 +216,7 @@ export default function AdminUsersPage() {
                                                 <Button
                                                     variant="ghost"
                                                     size="sm"
-                                                    onClick={() => handleDeleteUser(user.uid)}
+                                                    onClick={() => handleDeleteUser(user.id)}
                                                     className="text-red-600 hover:text-red-700"
                                                 >
                                                     <Trash2 size={16} />
