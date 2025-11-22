@@ -13,7 +13,14 @@ Create professional portfolios in minutes. No coding required.
 - **Custom URLs**: Get your own unique portfolio URL
 - **Admin Panel**: Manage users, settings, and features
 
-## 📦 Tech Stack
+## 📸 Screenshots
+
+![Design Studio Template](public/screenshots/home.png)
+*home page*
+
+![DevFolio Template](public/screenshots/home2.png)
+
+## � Tech Stack
 
 - **Frontend**: Next.js 16, React 19, TypeScript
 - **Styling**: Tailwind CSS
