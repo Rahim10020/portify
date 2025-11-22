@@ -142,18 +142,18 @@ const getDefaultPlaceholderData = (templateId: string): Partial<PortfolioData> =
 // Helper function to merge objects deeply, keeping user data when provided
 const deepMerge = <T extends Record<string, any>>(defaultObj: T, userObj: Partial<T> | undefined): T => {
     if (!userObj) return defaultObj;
-    
+
     const merged = { ...defaultObj };
-    
+
     for (const key in userObj) {
         const userValue = userObj[key];
         const defaultValue = defaultObj[key];
-        
+
         // If user value is null, undefined, or empty string, keep default
         if (userValue === null || userValue === undefined || userValue === '') {
             continue;
         }
-        
+
         // If both are objects (and not arrays), merge recursively
         if (
             typeof userValue === 'object' &&
@@ -164,10 +164,10 @@ const deepMerge = <T extends Record<string, any>>(defaultObj: T, userObj: Partia
             merged[key] = deepMerge(defaultValue, userValue);
         } else {
             // Otherwise, use user value
-            merged[key] = userValue;
+            merged[key] = userValue as T[Extract<keyof T, string>];
         }
     }
-    
+
     return merged;
 };
 
@@ -190,12 +190,12 @@ export const createPreviewPortfolio = (
 
     // Merge personal info - keep user values when provided, otherwise use defaults
     const mergedPersonal = deepMerge(defaultData.personal!, data.personal);
-    
+
     // For arrays, use user data if it exists and has items, otherwise use defaults
     const mergedExperience = mergeArray(defaultData.experience || [], data.experience);
     const mergedProjects = mergeArray(defaultData.projects || [], data.projects);
     const mergedSkills = mergeArray(defaultData.skills || [], data.skills);
-    
+
     // Merge socials and theme objects deeply
     const mergedSocials = deepMerge(defaultData.socials!, data.socials);
     const mergedTheme = deepMerge(defaultData.theme!, data.theme);
