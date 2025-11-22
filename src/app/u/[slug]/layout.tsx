@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
     try {
         // Note: We can't use Firebase directly in server components with the current setup
         // This would need a server-side Firebase Admin SDK setup
