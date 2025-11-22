@@ -19,7 +19,7 @@ import { createPortfolio } from '@/lib/firebase/firestore';
 import { ROUTES } from '@/lib/constants/routes';
 import { slugify } from '@/lib/utils/slugify';
 import { createPreviewPortfolio } from '@/lib/utils/preview';
-import { Experience, Project, Skill, Socials, Theme, PersonalInfo } from '@/types';
+import { Experience, Project, Skill, Socials, Theme, PersonalInfo, PortfolioPage } from '@/types';
 
 const TOTAL_STEPS = 8;
 
@@ -67,7 +67,13 @@ function CreateContent() {
     };
 
     const handlePersonalUpdate = (data: PersonalInfo) => {
-        setPersonalData(data);
+        setPersonalData({
+            name: data.name,
+            title: data.title,
+            bio: data.bio,
+            longBio: data.longBio || '',
+            location: data.location || '',
+        });
         // Auto-generate slug from name if not set
         if (!slug && data.name) {
             setSlug(slugify(data.name));
@@ -85,7 +91,7 @@ function CreateContent() {
                 templateId,
                 slug,
                 isPublished,
-                activePages: ['home', 'about', 'projects', 'contact'],
+                activePages: ['home', 'about', 'projects', 'contact'] as PortfolioPage[],
                 data: {
                     personal: personalData,
                     experience: experienceData,
