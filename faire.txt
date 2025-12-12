@@ -3,3 +3,5 @@
 - revoir le hover des boutons dans Minimal
 - revoir le responsive dans Minimal: partie projects, skills, et footer
 - voir si on peut fixer la sidebar de design studio
+
+- section projetc (ajout) : mettre gpt
